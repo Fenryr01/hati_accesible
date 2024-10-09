@@ -1,0 +1,69 @@
+<?php
+session_start(); // Asegúrate de iniciar la sesión aquí
+?>
+
+<header>
+    <nav class="navbar" id="navbar">
+        <div class="bubble2"></div>
+        <div class="bubble2"></div>
+        <div class="bubble2"></div>
+        <div class="bubble2"></div>
+        <div class="navbar-logo">
+            <img src="img/logo_accesibilidad_ok.png" alt="Logo" class="logo">
+            <span class="navbar-title">DIRECCIÓN DE ACCESIBILIDAD</span>
+        </div>
+        <div class="navbar-links" id="navbar-links">
+            <a href="index.php">Inicio</a>
+            
+            <?php if (!isset($_SESSION['username'])): ?>
+                <a href="registro.php">Registro</a>
+            <?php else: ?>
+                <?php if (isset($_SESSION['permisos']['formulario_discapacidad']) && $_SESSION['permisos']['formulario_discapacidad']): ?>
+                    <div class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn" id="dropdownFormBtn">Formularios</a>
+                        <div class="dropdown-content">
+                            <a href="registro.php">Registro</a>
+                            <a href="formulario_discapacidad.php">Formulario</a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="registro.php">Registro</a>
+                <?php endif; ?>
+            <?php endif; ?>
+            
+            <?php if (isset($_SESSION['permisos']['ver_tablas']) && $_SESSION['permisos']['ver_tablas']): ?>
+                <div class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn" id="dropdownDataBtn">Datos</a>
+                    <div class="dropdown-content">
+                        <a href="#tabla1">Tabla Registro</a>
+                        <a href="#tabla2">Tabla Formulario</a>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['permisos']['graficos']) && $_SESSION['permisos']['graficos']): ?>
+                <a href="#graficos">Gráficos</a>
+            <?php endif; ?>
+
+            <a href="#contacto">Contacto</a>
+
+            <?php if (isset($_SESSION['username'])): ?>
+                <div class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn" id="dropdownAccountBtn">Cuenta</a>
+                    <div class="dropdown-content">
+                        <?php if (isset($_SESSION['permisos']['roles']) && $_SESSION['permisos']['roles']): ?>
+                            <a href="cuentas.php">Usuarios</a>
+                        <?php endif; ?>
+                        <a href="php/salir.php">Cerrar Sesión</a>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <div class="navbar-toggle" id="navbar-toggle">
+            <span class="navbar-toggle-icon"></span>
+            <span class="navbar-toggle-icon"></span>
+            <span class="navbar-toggle-icon"></span>
+        </div>
+    </nav>
+</header>
