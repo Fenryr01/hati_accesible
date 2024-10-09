@@ -1,14 +1,16 @@
-# Usa una imagen base oficial de PHP con Apache ya instalado
-FROM php:8.1-apache
+FROM php:8.0-cli
 
-# Copia todos los archivos de tu proyecto al directorio público del servidor web Apache
-COPY . /var/www/html/
+# Instala extensiones de PHP si es necesario
+RUN docker-php-ext-install pdo pdo_mysql
 
-# Establece el directorio de trabajo dentro del contenedor
-WORKDIR /var/www/html/
+# Copia tus archivos de la aplicación al contenedor
+COPY . /var/www/html
 
-# Expone el puerto 80 para que Render lo utilice
+# Cambia al directorio de trabajo
+WORKDIR /var/www/html
+
+# Expone el puerto que utilizará tu aplicación
 EXPOSE 80
 
-# Inicia el servidor Apache cuando se despliegue la aplicación
-CMD ["apache2-foreground"]
+# Comando para ejecutar tu aplicación
+CMD ["php", "-S", "0.0.0.0:80"]
