@@ -1,3 +1,5 @@
+<?php include("navbar.php"); ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,12 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estilos.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="img/logo_accesibilidad.png">
     <title>Registro</title>
 </head>
 <body>
     <!-- Importar Navbar -->
-    <?php include("navbar.php"); ?>
+    
 
     <div class="container_registro">
         
