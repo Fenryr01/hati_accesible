@@ -1,6 +1,8 @@
 <?php
     // Incluir el archivo con la conexión y las consultas
     include("php/con_home.php");
+
+    include("navbar.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -14,8 +16,8 @@
 </head>
 <body>
 
-    <!-- Importar Navbar -->
-    <?php include("navbar.php"); ?>
+    
+    
 
     <!-- Banner -->
     <section id="banner" style="background-image: url('<?php echo $registro_id_1['imgurl']; ?>');">
