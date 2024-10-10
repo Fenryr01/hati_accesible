@@ -2,6 +2,14 @@
 session_start(); // Asegúrate de iniciar la sesión aquí
 ?>
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" type="image/png" href="img/logo_accesibilidad_ok.png">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
 <header>
     <nav class="navbar" id="navbar">
         <div class="bubble2"></div>
