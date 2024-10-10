@@ -1,11 +1,12 @@
 <?php
-// Conexión a la base de datos porque manuel tiene razon y asi no hay q escribirlo cada vez, ademas quien usa contrasena? mas confuso esto
-$host = "DB_HOST";
-$usuario = "DB_USER";
-$contrasena = "DB_PASSWORD";
-$base_de_datos = "DB_DBNAME";
-//$puerto = 3308;  PUERTO CAMBIARLO
+// Obtener las variables de entorno
+$host = getenv('DB_HOST');
+$usuario = getenv('DB_USER');
+$contrasena = getenv('DB_PASSWORD');
+$base_de_datos = getenv('DB_DBNAME');
+$puerto = 3306; // Cambia el puerto si es necesario
 
+// Crear la conexión a la base de datos
 $conexion = new mysqli($host, $usuario, $contrasena, $base_de_datos, $puerto);
 
 // Verificar si la conexión es exitosa
