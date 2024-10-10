@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
 
         // Redirigir a la página principal
-        header("Location: ../index.php");
+        header("Location: ../cuentas.php");
         exit();
     } else {
         echo "Usuario o contraseña incorrectos.";
