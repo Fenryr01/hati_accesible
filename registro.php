@@ -1,4 +1,4 @@
-
+<?php include("navbar.php"); ?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -11,7 +11,7 @@
     <title>Registro</title>
 </head>
 <body>
-    <?php include("navbar.php"); ?>
+    
 
     <div class="container_registro">
         
