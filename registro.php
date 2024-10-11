@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estilos.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
     <title>Registro</title>
 </head>
 <body>
-    <!-- Importar Navbar -->
     
 
     <div class="container_registro">
@@ -29,10 +29,10 @@
             <select id="persona_discapacidad" name="persona_discapacidad" required onchange="mostrarCampos()">
                 <option value="" disabled selected>Seleccione una opción</option>
                 <option value="No">No</option>
-                <option value="Sí">Sí</option>
+                <option value="Si">Si</option>
             </select>
 
-            <!-- Estos son los campos adicionales que solo se mostrarán si se selecciona "Sí" -->
+            <!-- Estos son los campos adicionales que solo se mostrarán si se selecciona "Si" -->
             <div id="extra-fields" style="display:none;">
                 <label>¿Quién es la persona con discapacidad?</label>
                 <div class="checkboxs">
@@ -71,7 +71,7 @@
                 <select id="certificado_discapacidad" name="certificado_discapacidad" required>
                     <option value="" disabled selected>Seleccione una opción</option>
                     <option value="No">No</option>
-                    <option value="Sí">Sí</option>
+                    <option value="Si">Si</option>
                 </select>
             </div>
 

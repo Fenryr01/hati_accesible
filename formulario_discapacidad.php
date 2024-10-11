@@ -11,7 +11,7 @@
         exit;
     }
 ?>
-   
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -19,12 +19,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estilos.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="img/logo_accesibilidad.png">
     <title>Formulario Discapacidad</title>
 
 </head>
 <body>
-
 
 
     <div class="container_registro">
@@ -58,12 +56,16 @@
 
             <!-- GRUPO FAMILIAR -->
             <label for="miembros_grupo_familiar">Número de miembros del grupo familiar:</label>
-            <input type="number" id="miembros_grupo_familiar" name="miembros_grupo_familiar" min="1" required>
+            <input type="number" id="miembros_grupo_familiar" name="miembros_grupo_familiar" min="0" required>
             
             <div id="grupo_familiar_container">
                 <!-- Aquí se generarán los inputs dinámicos -->
             </div>
 
+            <label for="observacion_datos_personales">Observaciones de Datos Personales:</label>
+            <textarea id="observacion_datos_personales" name="observacion_datos_personales" placeholder="Ingrese observaciones sobre los datos personales" rows="5" cols="50"></textarea>
+
+            
             <h2>Vivienda</h2>
 
             <label for="tipo_tenencia">Tipo de Tenencia:</label>
@@ -138,7 +140,7 @@
 
             <!-- AMBIENTES -->
             <label for="cantidad_ambientes">Cantidad de Ambientes:</label>
-            <input type="number" id="cantidad_ambientes" name="cantidad_ambientes" required min="1" oninput="mostrarUsoAmbientes(this.value)">
+            <input type="number" id="cantidad_ambientes" name="cantidad_ambientes" required min="0" oninput="mostrarUsoAmbientes(this.value)">
 
             <div id="contenedorUsoAmbientes"></div>
 
@@ -148,35 +150,35 @@
             <label for="ventilacion">Ventilación</label>
             <select id="ventilacion" name="ventilacion" required>
                 <option value="" disabled selected>Seleccione una opción</option>
-                <option value="1">Sí</option>
+                <option value="1">Si</option>
                 <option value="0">No</option>
             </select>
 
             <label for="iluminacion">Iluminación:</label>
             <select id="iluminacion" name="iluminacion" required>
                 <option value="" disabled selected>Seleccione una opción</option>
-                <option value="1">Sí</option>
+                <option value="1">Si</option>
                 <option value="0">No</option>
             </select>
 
             <label for="higiene">Higiene:</label>
             <select id="higiene" name="higiene" required>
                 <option value="" disabled selected>Seleccione una opción</option>
-                <option value="1">Sí</option>
+                <option value="1">Si</option>
                 <option value="0">No</option>
             </select>
 
             <label for="orden">Orden:</label>
             <select id="orden" name="orden" required>
                 <option value="" disabled selected>Seleccione una opción</option>
-                <option value="1">Sí</option>
+                <option value="1">Si</option>
                 <option value="0">No</option>
             </select>
 
             <label for="existencia_sanitaria">Existencia Sanitaria:</label>
             <select id="existencia_sanitaria" name="existencia_sanitaria" required>
                 <option value="" disabled selected>Seleccione una opción</option>
-                <option value="1">Sí</option>
+                <option value="1">Si</option>
                 <option value="0">No</option>
             </select>
 
@@ -198,16 +200,20 @@
 
             <!-- CONFORT-->
             <label for="numero_confort">Número de Elementos de Confort:</label>
-            <input type="number" id="numero_confort" name="numero_confort" required min="1" oninput="mostrarElementosConfort(this.value)">
+            <input type="number" id="numero_confort" name="numero_confort" required min="0" oninput="mostrarElementosConfort(this.value)">
 
             <div id="contenedorElementosConfort"></div>
 
             <label for="barreras_arquitectonicas">Barreras Arquitectónicas:</label>
             <select id="barreras_arquitectonicas" name="barreras_arquitectonicas" required>
                 <option value="" disabled selected>Seleccione una opción</option>
-                <option value="1">Sí</option>
+                <option value="1">Si</option>
                 <option value="0">No</option>
             </select>
+
+            <label for="observacion_vivienda">Observaciones:</label>
+            <textarea id="observacion_vivienda" name="observacion_vivienda" placeholder="Ingrese observaciones sobre la vivienda" rows="5" cols="50"></textarea>
+
 
 
             <h2>Salud</h2>
@@ -220,14 +226,14 @@
             <label for="cobertura">Cobertura:</label>
             <select id="cobertura" name="cobertura" required>
                 <option value="" disabled selected>Seleccione una opción</option>
-                <option value="1">Sí</option>
+                <option value="1">Si</option>
                 <option value="0">No</option>
             </select>
 
             <label for="cud">CUD:</label>
             <select id="cud" name="cud" required>
                 <option value="" disabled selected>Seleccione una opción</option>
-                <option value="1">Sí</option>
+                <option value="1">Si</option>
                 <option value="0">No</option>
             </select>
 
@@ -237,7 +243,7 @@
             <label for="necesita_asistencia">¿Necesita asistencia?</label>
             <select id="necesita_asistencia" name="necesita_asistencia" required>
                 <option value="" disabled selected>Seleccione una opción</option>
-                <option value="1">Sí</option>
+                <option value="1">Si</option>
                 <option value="0">No</option>
             </select>
 
@@ -247,9 +253,13 @@
             <label for="cobra_pension">¿Cobra pensión?</label>
             <select id="cobra_pension" name="cobra_pension" required>
                 <option value="" disabled selected>Seleccione una opción</option>
-                <option value="1">Sí</option>
+                <option value="1">Si</option>
                 <option value="0">No</option>
             </select>
+
+            <label for="observacion_salud">Observaciones de Salud:</label>
+            <textarea id="observacion_salud" name="observacion_salud" placeholder="Ingrese observaciones sobre la salud" rows="5" cols="50" style="resize: none;"></textarea>
+
 
             <input type="submit" value="Enviar">
 

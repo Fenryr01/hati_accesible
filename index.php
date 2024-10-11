@@ -9,15 +9,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="img/logo_accesibilidad_ok.png">
     <link rel="stylesheet" href="css/estilos.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
     <title>Dirección de Accesibilidad</title>
 </head>
 <body>
 
-    
-    
 
     <!-- Banner -->
     <section id="banner" style="background-image: url('<?php echo $registro_id_1['imgurl']; ?>');">

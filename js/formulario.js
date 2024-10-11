@@ -29,16 +29,21 @@ document.addEventListener("DOMContentLoaded", function() {
                     <input type="number" name="edad_${i}" required><br>
 
                     <label>Escolaridad</label>
-                    <input type="text" name="escolaridad_${i}" required><br>
+                    <select name="escolaridad_${i}" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select><br>
 
                     <label>¿Tiene trabajo?</label>
                     <select name="trabajo_${i}" required>
-                        <option value="1">Sí</option>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="1">Si</option>
                         <option value="0">No</option>
                     </select><br>
 
                     <label>¿Dónde trabaja?</label>
-                    <input type="text" name="donde_${i}" required><br>
+                    <input type="text" name="donde_${i}"><br>
                     <hr>
                 `;
                 // Añadimos el div al contenedor
@@ -68,7 +73,17 @@ function mostrarElementosConfort(numeroConfort) {
     for (let i = 0; i < numeroConfort; i++) {
         contenedor.innerHTML += `
             <h4>Elemento de Confort ${i + 1}</h4>
-            <input type="text" id="elementos_confort_${i}" name="elementos_confort[]" required>
+            <select id="elementos_confort_${i}" name="elementos_confort[]" required>
+                <option value="" disabled selected>Seleccione una opción</option>
+                <option value="internet">Internet</option>
+                <option value="celular">Celular</option>
+                <option value="tv">TV</option>
+                <option value="heladera">Heladera</option>
+                <option value="cocina">Cocina</option>
+                <option value="lavarropas">Lavarropas</option>
+                <option value="playstation">PlayStation</option>
+                <option value="otros">Otros</option>
+            </select>
             <hr>
         `;
     }
@@ -79,11 +94,22 @@ function updateDiscapacidadInputs() {
     const contenedor = document.getElementById('discapacidad_inputs');
     contenedor.innerHTML = ''; // Limpiar entradas anteriores
 
-    // Generar los inputs según el número de discapacidades
+    // Generar los selects e inputs según el número de discapacidades
     for (let i = 0; i < cantidad; i++) {
         contenedor.innerHTML += `
             <h4>Discapacidad ${i + 1}</h4>
-            <input type="text" id="discapacidad_${i}" name="discapacidad[]" placeholder="Ingrese discapacidad ${i + 1}" required>
+            <select id="tipo_discapacidad_${i}" name="tipo_discapacidad[]" required>
+                <option value="" disabled selected>Seleccione tipo de discapacidad</option>
+                <option value="auditiva">Auditiva</option>
+                <option value="visual">Visual</option>
+                <option value="visceral">Visceral</option>
+                <option value="mental">Mental</option>
+                <option value="motora">Motora</option>
+                <option value="congenita">Congénita</option>
+                <option value="cea">CEA (Condición del Espectro Autista)</option>
+                <option value="trastorno_procesamiento_sensorial">Trastorno del procesamiento sensorial</option>
+            </select>
+            <input type="text" id="discapacidad_${i}" name="discapacidad[]" placeholder="Discapacidad específica" required>
             <hr>
         `;
     }
