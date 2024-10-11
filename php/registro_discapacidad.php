@@ -10,10 +10,10 @@ $correo = !empty($_POST['correo']) ? $_POST['correo'] : NULL; // Campo opcional
 $dni = $_POST['dni']; // Capturamos el DNI
 
 // Verificar si el campo certificado_discapacidad está definido y establecer el valor
-$certificado_discapacidad = (isset($_POST['certificado_discapacidad']) && $_POST['certificado_discapacidad'] == 'Sí') ? 1 : 0;
+$certificado_discapacidad = (isset($_POST['certificado_discapacidad']) && $_POST['certificado_discapacidad'] == 'Si') ? 1 : 0;
 
 // Verificar si hay una persona con discapacidad
-if (isset($_POST['persona_discapacidad']) && $_POST['persona_discapacidad'] === 'Sí') {
+if (isset($_POST['persona_discapacidad']) && $_POST['persona_discapacidad'] === 'Si') {
     // Inicializamos la variable $quienes
     $quienes = '';
 

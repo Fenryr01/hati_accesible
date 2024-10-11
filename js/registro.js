@@ -11,7 +11,7 @@ function mostrarCampos() {
     extraFields.style.display = "none"; // Ocultar campos adicionales por defecto
 
     // Mostrar u ocultar campos adicionales según la selección
-    if (seleccion === "Sí") {
+    if (seleccion === "Si") {
         extraFields.style.display = "block";
 
         // Establecer los campos como requeridos
