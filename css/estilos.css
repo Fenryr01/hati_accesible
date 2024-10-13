@@ -12,7 +12,7 @@
     text-transform: uppercase;
 }
 
-input {
+input, textarea{
     text-transform:none;
 }
 
@@ -21,7 +21,11 @@ body {
     line-height: 1.6;
     background-color: #f4f7f9;
     color: #333;
-  
+}
+
+main {
+    margin: 50px 0 150px 0;
+    min-height: 100vh;
 }
 
 h1, h2, h3 {
@@ -1141,6 +1145,75 @@ body.scrolled #banner {
     transform: translateX(27px) translateY(-50%);
 }
 
+/* =============== TABLA REGISTRO =============== */
+.sort-indicator {
+    display: inline-block; 
+    font-size: 1em; 
+    width: 5px; 
+}
+
+#resultado_texto{
+    padding: 15px 10px 10px 10px;
+    color: black;
+    font-weight: bold;
+    font-size: clamp(0.75rem, 1.2rem, 1.5rem);
+}
+
+.buscador{
+    padding: 70px 10px 10px 10px;
+    background-color: #d1d1d1;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7)
+}
+
+.buscador input{
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #000000;
+}
+
+.tabla_registro{
+    display: grid;
+    grid-column: auto;
+}
+
+.tabla_registro_datos th{
+    text-align: start;
+    background-color: var(--color-oscuro);
+    color: white;
+    font-weight: bold;
+    font-size: clamp(0.75rem, 1.2rem, 1.5rem);
+    cursor: pointer;
+    padding-left: 20px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.tabla_registro_datos th:nth-child(3){
+    cursor: default;
+    text-align: center;
+}
+
+
+.tabla_registro_datos tr{
+    font-weight: bold;
+    font-size: clamp(0.75rem, 1.2rem, 1.5rem);
+}
+
+.data-row td{
+    padding: 10px 0 10px 10px;
+}
+
+.data-row:nth-child(even){
+   background-color: #cfcfcf;
+}
+
+.data-row td:nth-child(3){
+    text-align: center;
+}
+
 /* =============== RESPONSIVE =============== */
 
 /* =============== HOME  =============== */
@@ -1294,11 +1367,11 @@ body.scrolled #banner {
     }
 
     .dropbtn {
-        display: block; /* Mostrar como bloque */
-        color: white; /* Color del texto */
-        cursor: pointer; /* Cambiar cursor a puntero */
-        background: transparent; /* Sin fondo */
-        border: none; /* Sin borde */
+        display: block; 
+        color: white; 
+        cursor: pointer; 
+        background: transparent; 
+        border: none;
         text-align: center;
     }
 
@@ -1419,7 +1492,7 @@ body.scrolled #banner {
 
     /* Oculta el checkbox original */
     .custom-checkbox {
-        display: none; /* Oculta el checkbox original */
+        display: none; 
     }
 
     .tabla_usuarios_permisos input[type="checkbox"] {
@@ -1428,9 +1501,9 @@ body.scrolled #banner {
     }
 
     .label-permiso {
-        display: block; /* Mostrar el label en móvil */
-        margin-bottom: 5px; /* Espacio debajo del label */
-        font-weight: bold; /* Hacer que el texto del label sea más destacado */
+        display: block;
+        margin-bottom: 5px; 
+        font-weight: bold; 
     }
 
     .permisos_tablas td:nth-child(1){
@@ -1438,10 +1511,6 @@ body.scrolled #banner {
         font-size: 1.5rem; 
     }
 
-}
-
-/* POPUP AGREGAR */
-@media (max-width: 600px) {
     .popup h2{
         font-size: 2rem;
     }
@@ -1450,13 +1519,51 @@ body.scrolled #banner {
         width: 90%;
         height: 95%;
     }
-}
 
-@media (max-width: 600px) {
     .boton-container {
         flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
     }
+
+}
+
+
+/* =============== CUENTA  =============== */
+@media (max-width: 600px) {
+    .tabla_registro {
+        width: 100%;
+        border-collapse: collapse; 
+    }
+
+    .tabla_registro_datos {
+        display: flex;
+        flex-direction: column; 
+    }
+
+    .tabla_registro_datos tr {
+        display: flex; 
+        flex-direction: row; 
+    }
+
+    .tabla_registro_datos td {
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center;
+        border: none; 
+        width: 100%;
+    }
+
+    .buscador select:focus {
+        background-color: var(--color-oscuro);
+        color: white; 
+    }
+
+    .buscador option {
+        background-color: white; 
+        color: black; 
+    }
+
+
 }
