@@ -6,8 +6,7 @@ session_start(); // Asegúrate de iniciar la sesión aquí
 <html lang="es">
 <head>
     <link rel="icon" type="image/png" href="img/logo_accesibilidad_ok.png">
-    <link rel="stylesheet" href="css/estilos.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
 </head>
 <body>
 <header>
@@ -43,7 +42,7 @@ session_start(); // Asegúrate de iniciar la sesión aquí
                 <div class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn" id="dropdownDataBtn">Datos</a>
                     <div class="dropdown-content">
-                        <a href="#tabla1">Tabla Registro</a>
+                        <a href="tabla_registro.php">Tabla Registro</a>
                         <a href="#tabla2">Tabla Formulario</a>
                     </div>
                 </div>
