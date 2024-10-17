@@ -1,15 +1,9 @@
-<?php include("navbar.php"); 
-    // Verificar si el usuario está autenticado
-    if (!isset($_SESSION['username'])) {
-        header("Location: index.php"); // Redirigir al inicio si no está autenticado
-        exit;
-    }
+<?php 
+    // Definir el permiso requerido para esta página
+    $requiredPermission = 'formulario_discapacidad';
 
-    // Verificar permisos específicos
-    if (!isset($_SESSION['permisos']['formulario_discapacidad'])) {
-        header("Location: index.php"); // Redirigir si no tiene permiso
-        exit;
-    }
+    include("navbar.php"); 
+       
 ?>
 
 <!DOCTYPE html>

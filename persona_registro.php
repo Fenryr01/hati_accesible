@@ -1,17 +1,8 @@
 <?php 
+// Definir el permiso requerido para esta página
+$requiredPermission = 'editar_tablas';
+
 include("navbar.php"); 
-
-// Verificar si el usuario está autenticado
-if (!isset($_SESSION['username'])) {
-    header("Location: index.php"); // Redirigir al inicio si no está autenticado
-    exit;
-}
-
-// Verificar permisos específicos
-if (!isset($_SESSION['permisos']['ver_tablas'])) {
-    header("Location: index.php"); // Redirigir si no tiene permiso
-    exit;
-}
 
 include("php/db.php"); // Incluir la conexión a la base de datos
 if (!$conexion) {

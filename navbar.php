@@ -1,5 +1,20 @@
 <?php
 session_start(); // Asegúrate de iniciar la sesión aquí
+
+// Verificar permisos para acceder a la página (pasado desde el archivo de la página)
+$requiredPermission = isset($requiredPermission) ? $requiredPermission : '';
+
+ // Verificar si el usuario está autenticado
+if ($requiredPermission && (!isset($_SESSION['username']))) {
+    header("Location: index.php"); // Redirigir al inicio si no está autenticado
+    exit;
+}
+
+// Verificar si el usuario tiene el permiso requerido
+if ($requiredPermission && (!isset($_SESSION['permisos'][$requiredPermission]) || !$_SESSION['permisos'][$requiredPermission])) {
+    header("Location: index.php");
+    exit; // Asegúrate de salir después de la redirección
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
