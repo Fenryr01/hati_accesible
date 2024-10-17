@@ -38,11 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'formulario_discapacidad' => $user['formulario_discapacidad'],
         ];
 
-        // Redirigir a la página principal
-        header("Location: ../index.php");
-        exit();
+        echo json_encode(['success' => true]);
     } else {
-        echo "Usuario o contraseña incorrectos.";
+        echo json_encode(['success' => false]);
     }
 
     $stmt->close();

@@ -9,7 +9,7 @@ $sort_column = isset($_GET['sort_column']) ? $_GET['sort_column'] : 'apellido';
 $sort_order = isset($_GET['sort_order']) && in_array($_GET['sort_order'], ['asc', 'desc']) ? $_GET['sort_order'] : 'asc';
 
 // Query base
-$query = "SELECT id, nombre, apellido, visitado FROM registro_discapacidad WHERE 1=1";
+$query = "SELECT id, nombre, apellido, dni, direccion, visitado FROM registro_discapacidad WHERE 1=1";
 
 // Agregar condiciones de búsqueda solo si existen
 if (!empty($search)) {
@@ -37,12 +37,30 @@ $total_resultados = mysqli_num_rows($resultado);
 
 
 
-// Mostrar todos los registros si no hay filtros aplicados
 while ($fila = mysqli_fetch_assoc($resultado)) {
     $checked = $fila['visitado'] ? 'checked' : '';
     echo "<tr class='data-row'>";
-    echo "<td>" . htmlspecialchars($fila['apellido']) . "</td>";
-    echo "<td>" . htmlspecialchars($fila['nombre']) . "</td>";
+    // Cambiamos cada dato a su propio <td>
+    echo "<td>
+            <div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>
+                " . htmlspecialchars($fila['dni']) . "
+            </div>
+          </td>";
+    echo "<td>
+            <div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>
+                " . htmlspecialchars($fila['apellido']) . "
+            </div>
+          </td>";
+    echo "<td>
+            <div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>
+                " . htmlspecialchars($fila['nombre']) . "
+            </div>
+          </td>";
+    echo "<td>
+        <div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>
+            " . htmlspecialchars($fila['direccion']) . "
+        </div>
+        </td>";
     echo "<td>
             <label class='switch'>
                 <input type='checkbox' class='visitado-checkbox' data-id='" . $fila['id'] . "' $checked />
@@ -52,7 +70,6 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
         </td>";
     echo "</tr>";
 }
-
 
 
 // Liberar el resultado y cerrar la conexión

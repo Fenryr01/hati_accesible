@@ -114,3 +114,42 @@ function updateDiscapacidadInputs() {
         `;
     }
 }
+function validarFormulario(pagina) {
+    const inputsRequeridos = document.querySelectorAll(`#pagina${pagina} [required]`);
+    let todosCompletos = true; 
+
+    for (let input of inputsRequeridos) {
+        if (!input.value) {
+            todosCompletos = false; 
+            input.setCustomValidity('Este campo es requerido.'); 
+        } else {
+            input.setCustomValidity(''); 
+        }
+    }
+
+    // Validar el formulario
+    if (!todosCompletos) {
+        inputsRequeridos.forEach(input => {
+            input.reportValidity(); 
+        });
+        return false; 
+    }
+
+    return true;
+}
+
+function cambiarPagina(nuevaPagina) {
+    const paginaActual = document.querySelector('.pagina:not([style*="display: none"])');
+    const numeroPaginaActual = parseInt(paginaActual.id.replace('pagina', ''));
+
+    if (nuevaPagina > numeroPaginaActual && !validarFormulario(numeroPaginaActual)) {
+        return; // Detiene si la validación falla
+    }
+
+    // Ocultar la página actual
+    paginaActual.style.display = 'none';
+    
+    // Mostrar la nueva página
+    const nuevaPaginaElemento = document.getElementById(`pagina${nuevaPagina}`);
+    nuevaPaginaElemento.style.display = 'block';
+}

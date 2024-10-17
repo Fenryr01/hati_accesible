@@ -24,7 +24,7 @@ body {
 }
 
 main {
-    margin: 50px 0 150px 0;
+    margin: 50px 0 50px 0;
     min-height: 100vh;
 }
 
@@ -509,7 +509,7 @@ body.scrolled #banner {
 .modal-content {
     width: 350px;
     background: linear-gradient(
-        135deg, 
+        165deg, 
         rgba(0, 2, 114, 0.7), 
         rgba(0, 68, 131, 0.7), 
         rgba(0, 104, 122, 0.7), 
@@ -524,6 +524,14 @@ body.scrolled #banner {
     border-right-color: rgba(60,60,60,.4);
 }
 
+
+.error_login{
+    display: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: rgb(207, 2, 2);
+    text-align: center;
+}
 
 .close {
     color: #aaa;
@@ -697,6 +705,64 @@ body.scrolled #banner {
     resize: none;
 }
 
+.pagina {
+    display: none; /* Oculta todas las páginas por defecto */
+}
+
+.pagina:first-child {
+    display: block; /* Muestra la primera página inicialmente */
+}
+
+.ant_sig1, .ant_sig2{
+    background: linear-gradient(135deg, rgb(0, 73, 95),rgb(44, 84, 158));
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    border-radius: 10px;
+    border: 0px;
+    width: fit-content;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.ant_sig2:hover, .ant_sig1:hover {
+    background: linear-gradient(135deg, rgb(0, 143, 187),rgb(0, 73, 95));
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); 
+    transform: translateY(-2px);
+}   
+
+.ant_sig2:focus, .ant_sig1:hover{
+    background: linear-gradient(135deg, rgb(0, 143, 187),rgb(0, 73, 95));
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); 
+    transform: translateY(-2px);
+}
+
+.buton_ant_sig {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buton_ant_sig {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buton_ant_sig1  {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buton_ant_sig2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buton_ant_sig3  {
+    display: flex;
+    justify-content: flex-start;
+}
 
 /* =============== CUENTAS =============== */
 .container_cuentas {
@@ -1191,15 +1257,20 @@ body.scrolled #banner {
     -webkit-tap-highlight-color: transparent;
 }
 
-.tabla_registro_datos th:nth-child(3){
+.tabla_registro_datos th:nth-child(5){
     cursor: default;
     text-align: center;
 }
 
 
-.tabla_registro_datos tr{
+.tabla_registro_datos td{
     font-weight: bold;
     font-size: clamp(0.75rem, 1.2rem, 1.5rem);
+    text-align: start;
+}
+
+.tabla_registro_datos td:nth-child(5){
+    text-align: center;
 }
 
 .data-row td{
@@ -1210,8 +1281,66 @@ body.scrolled #banner {
    background-color: #cfcfcf;
 }
 
-.data-row td:nth-child(3){
-    text-align: center;
+.nombre-apellido-wrapper {
+    cursor: pointer; 
+}
+
+
+
+
+/* =============== PERSONA REGISTRO =============== */
+.botones_row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.visitado_registro{
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-eliminar {
+    background: linear-gradient(135deg, rgba(245, 0, 0), rgb(78, 5, 5));
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    padding: 0;  
+}
+
+.btn-eliminar:hover {
+    background: linear-gradient(135deg, rgb(161, 1, 1), rgb(255, 50, 50));
+    color: #2dceff;
+}
+
+.btn-eliminar:focus { 
+    background: linear-gradient(135deg, rgb(161, 1, 1), rgb(255, 50, 50));
+    color: #2dceff;
+}
+
+.btn-back{ 
+    background: linear-gradient(135deg, rgb(0, 98, 128), rgb(50, 122, 255));
+    position: absolute;
+    text-align: start;
+    font-size: 40px;
+    color: #ffffff;
+    height: 50px;
+    width: 50px;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.btn-back:focus{ 
+    background: linear-gradient(135deg, rgb(0, 134, 175),rgb(71, 135, 255));
+    color: #86fd8c;
+}
+
+.btn-back:hover{ 
+    background: linear-gradient(135deg, rgb(0, 134, 175),rgb(71, 135, 255));
+    color: #86fd8c;
 }
 
 /* =============== RESPONSIVE =============== */
@@ -1440,7 +1569,17 @@ body.scrolled #banner {
     .checkboxs {
         grid-template-columns: repeat(2, 1fr); /* Dos columnas cuando el espacio es limitado */
     }
+
+    .pagina {
+        display: block; /* Oculta todas las páginas por defecto */
+    }
+
+    .ant_sig{
+        display: none;
+    }
+
 }
+
 
 /* =============== CUENTA  =============== */
 @media (max-width: 600px) {
@@ -1530,11 +1669,17 @@ body.scrolled #banner {
 }
 
 
-/* =============== CUENTA  =============== */
+/* =============== TABLA REGISTRO  =============== */
 @media (max-width: 600px) {
     .tabla_registro {
         width: 100%;
         border-collapse: collapse; 
+    }
+
+    .tabla_registro th{
+        width: 100%;
+        font-size: 14px;
+        text-align: center;
     }
 
     .tabla_registro_datos {
@@ -1566,4 +1711,17 @@ body.scrolled #banner {
     }
 
 
+    .tabla_registro_datos td:nth-child(1),
+    .tabla_registro_datos th:nth-child(1),
+    .tabla_registro_datos td:nth-child(4),
+    .tabla_registro_datos th:nth-child(4) {
+        display: none; /* Oculta las columnas de DNI y Dirección en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 870px) {
+
+    .form_registro{ 
+        margin-top: 50px;
+    }
 }

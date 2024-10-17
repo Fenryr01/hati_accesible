@@ -43,8 +43,10 @@
             <table class="tabla_registro_datos">
                 <thead>
                     <tr>
+                    <th class="sortable" data-column="dni" data-order="asc">DNI <span class="sort-indicator"></span></th>
                     <th class="sortable" data-column="apellido" data-order="asc">Apellido <span class="sort-indicator"></span></th>
                     <th class="sortable" data-column="nombre" data-order="asc">Nombre <span class="sort-indicator"></span></th>
+                    <th class="sortable" data-column="direccion" data-order="asc">Dirección <span class="sort-indicator"></span></th>
                         <th>Visitado</th>
                     </tr>
                 </thead>

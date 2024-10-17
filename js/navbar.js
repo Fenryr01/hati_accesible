@@ -45,7 +45,7 @@ hamburger.addEventListener('click', function() {
 // Función para manejar el clic en los botones de dropdown
 function setupDropdown(btnId) {
     const dropdownBtn = document.getElementById(btnId);
-    const dropdownContent = dropdownBtn.nextElementSibling; 
+    const dropdownContent = dropdownBtn.nextElementSibling; // Obtener el siguiente elemento que es .dropdown-content
 
     // Manejar el clic en el botón de dropdown
     dropdownBtn.addEventListener('click', function(event) {
