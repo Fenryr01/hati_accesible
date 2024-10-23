@@ -1404,6 +1404,7 @@ body.scrolled #banner {
     margin-bottom:-10px; /*Fix for safari gap*/
     min-height:100px;
     max-height:150px;
+    z-index: 1;
 }
 
 .content {
@@ -1465,7 +1466,6 @@ body.scrolled #banner {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7); /* Sombra hacia abajo */
     position: relative; 
     margin-top: 0px;
-    z-index: -1; /* Asegura que el buscador esté encima de otros elementos */
 }
 
 
