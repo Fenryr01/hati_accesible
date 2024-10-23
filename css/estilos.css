@@ -189,6 +189,147 @@ body.scrolled #banner {
     background-color: rgba(30, 30, 30, 1); /* Fondo gris más oscuro al pasar el mouse */
 }
 
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    display: none; /* Oculto por defecto */
+    z-index: 1000; /* Asegura que el overlay esté por encima del contenido principal */
+}
+
+
+
+/* Estilos para el popup */
+.popup-overlay_home {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+.popup-content_home {
+    background: linear-gradient(
+        165deg, 
+        rgba(0, 2, 114, 0.9), 
+        rgba(0, 68, 131, 0.9), 
+        rgba(0, 104, 122, 0.9), 
+        rgba(0, 178, 190, 0.9), 
+        rgba(0, 255, 242, 0.9)
+    );
+    padding: 5px 20px 20px 20px;
+    border-radius: 10px;
+    width: 80%;
+    height: 85%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.popup_form{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between; 
+}
+
+.popup_form input{
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    border: 1px solid #000000;
+}
+
+.popup_form textarea{
+    width: 100%;
+    height: 10vw;
+    max-height: 150px;
+    padding: 12px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    border: 1px solid #000000;
+    resize: none;
+}
+
+
+.popup_form form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.popup-header_home {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.popup-header_home h2 {
+    margin: 0;
+    color: white;
+    font-size: clamp(1rem, 2vw, 2rem);
+}
+
+.popup-content_home label {
+    color: var(--color-medio);
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    margin: 10px 0 0 0;
+}
+
+.button_edit_home {
+    align-self: center;
+    width: 350px;
+    border: transparent;
+    border-radius: 10px;
+    padding: 8px 24px 8px 10px;
+    font-weight: bold;
+    font-size: clamp(1rem, 1.5rem, 1.7rem);
+    letter-spacing: .075em;
+    color: #fff;
+    margin-top: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+ 
+.button_edit_home:hover{
+    background-color: rgba(0, 60, 190, 0.8);
+    cursor: pointer;
+}
+
+.close-btn_home {
+    color: #aaa;
+    float: right;
+    font-size: 35px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 35px;
+    margin-top: -20px;
+}
+
+.close-btn_home:hover,
+.close-btn_home:focus {
+    color: red;
+    cursor: pointer;
+}
+
 /* =============== NOTICIAS =============== */
 #noticias {
     padding: 50px 20px;
@@ -592,7 +733,6 @@ body.scrolled #banner {
 
 /* Ocultar el estilo del favicon */
 #loginBtn {
-    
     border: none;
     background: none;
 }
@@ -706,11 +846,11 @@ body.scrolled #banner {
 }
 
 .pagina {
-    display: none; /* Oculta todas las páginas por defecto */
+    display: none;
 }
 
 .pagina:first-child {
-    display: block; /* Muestra la primera página inicialmente */
+    display: block; 
 }
 
 .ant_sig1, .ant_sig2{
@@ -727,6 +867,22 @@ body.scrolled #banner {
     transition: all 0.3s ease;
 }
 
+.ant_sig1{
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+
+}
+
+.ant_sig2{
+    padding-left: 5px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+
 .ant_sig2:hover, .ant_sig1:hover {
     background: linear-gradient(135deg, rgb(0, 143, 187),rgb(0, 73, 95));
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); 
@@ -739,15 +895,6 @@ body.scrolled #banner {
     transform: translateY(-2px);
 }
 
-.buton_ant_sig {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.buton_ant_sig {
-    display: flex;
-    justify-content: flex-end;
-}
 
 .buton_ant_sig1  {
     display: flex;
@@ -764,7 +911,13 @@ body.scrolled #banner {
     justify-content: flex-start;
 }
 
+.datos_tab{
+    font-style: italic;
+    cursor: default;
+}
+
 /* =============== CUENTAS =============== */
+
 .container_cuentas {
     width: 100%;
     margin: 125px 0;
@@ -1023,6 +1176,7 @@ body.scrolled #banner {
 
 /* Estilo para el label */
 .custom-label {
+    -webkit-tap-highlight-color: transparent;
     position: relative; /* Cambio aquí a relative */
     display: inline-block; /* Asegura que el label tenga el tamaño del contenido */
     width: 30px; /* Ancho del contenedor */
@@ -1212,8 +1366,87 @@ body.scrolled #banner {
 }
 
 /* =============== TABLA REGISTRO =============== */
+
+/*WAVES*/
+.waves_div {
+    position:relative;
+    text-align:center;
+    background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
+    color:white;
+}
+
+.waves_div h1{
+    color: white;
+    font-weight:300;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size:48px;
+}
+
+.inner-header {
+    height:25vh;
+    width:100%;
+    margin: 0;
+    padding-top: 50px;
+}
+
+.flex { /*Flexbox for containers*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.waves {
+    position:relative;
+    width: 100%;
+    height:15vh;
+    margin-bottom:-10px; /*Fix for safari gap*/
+    min-height:100px;
+    max-height:150px;
+}
+
+.content {
+    position:relative;
+    height:20vh;
+    text-align:center;
+    background-color: white;
+}
+
+/* Animation */
+
+.parallax > use {
+    animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+}
+.parallax > use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+    animation-delay: -5s;
+    animation-duration: 20s;
+}
+
+@keyframes move-forever {
+0% {
+    transform: translate3d(-90px,0,0);
+}
+100% { 
+    transform: translate3d(85px,0,0);
+}
+}
+
+
 .sort-indicator {
-    display: inline-block; 
+    display: absolute; /* Cambia a inline para que no afecte el ancho del contenedor */
     font-size: 1em; 
     width: 5px; 
 }
@@ -1225,12 +1458,16 @@ body.scrolled #banner {
     font-size: clamp(0.75rem, 1.2rem, 1.5rem);
 }
 
-.buscador{
+.buscador {
     padding: 70px 10px 10px 10px;
     background-color: #d1d1d1;
     border-radius: 0 0 15px 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7)
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7); /* Sombra hacia abajo */
+    position: relative; 
+    margin-top: 0px;
+    z-index: -1; /* Asegura que el buscador esté encima de otros elementos */
 }
+
 
 .buscador input{
     width: 100%;
@@ -1247,19 +1484,27 @@ body.scrolled #banner {
 }
 
 .tabla_registro_datos th{
-    text-align: start;
+    text-align: center;
     background-color: var(--color-oscuro);
     color: white;
     font-weight: bold;
     font-size: clamp(0.75rem, 1.2rem, 1.5rem);
     cursor: pointer;
-    padding-left: 20px;
+    
     -webkit-tap-highlight-color: transparent;
+    
+    width: 350px;
+}
+
+/* Sobrescribir el ancho para las columnas específicas */
+.tabla_registro_datos th:nth-child(1), /* Cambia este número según la posición de la columna DNI */
+.tabla_registro_datos th:nth-child(5) { /* Cambia este número según la posición de la columna Visitado */
+    max-width: 120px;
 }
 
 .tabla_registro_datos th:nth-child(5){
     cursor: default;
-    text-align: center;
+    
 }
 
 
@@ -1285,7 +1530,65 @@ body.scrolled #banner {
     cursor: pointer; 
 }
 
+.pagination{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 15px;
+}
 
+.pagination .ant_sig1, 
+.pagination .ant_sig2 {
+    font-size: 1rem;
+}
+
+.pagination span{
+    margin-right: 15px;
+    padding-top: 1px;
+    margin-left: 5px;
+}
+
+.pagination input[type="number"] {
+    margin-left: 15px;
+    width: 30px; 
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.5); 
+    border-radius: 5px;
+}
+
+.pagination input[type="number"]::-webkit-inner-spin-button,
+.pagination input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Elimina los spinners en Chrome/Safari */
+    margin: 0;
+}
+
+
+.tabla_registro_datos_formulario th{
+    text-align: center;
+    background-color: var(--color-oscuro);
+    color: white;
+    font-weight: bold;
+    font-size: clamp(0.75rem, 1.2rem, 1.5rem);
+    cursor: pointer;
+    
+    -webkit-tap-highlight-color: transparent;
+    width: 350px;
+}
+
+/* Sobrescribir el ancho para las columnas específicas */
+.tabla_registro_datos_formulario th:nth-child(1) { 
+    max-width: 120px;
+}
+
+
+
+.tabla_registro_datos_formulario td{
+    font-weight: bold;
+    font-size: clamp(0.75rem, 1.2rem, 1.5rem);
+    text-align: start;
+}
 
 
 /* =============== PERSONA REGISTRO =============== */
@@ -1426,6 +1729,29 @@ body.scrolled #banner {
         margin-left: 0;
         margin-top: 20px;
     }
+
+    .popup_form form{
+        justify-content: flex-start;
+    }
+
+    .popup_form textarea{
+        height: 30vw;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .popup_form textarea{
+        height: 40vw;
+    }
+
+    .button_edit_home {
+        width: 250px;
+        font-size: clamp(1rem, 1.5rem, 1.7rem);
+    }
+
+    .banner-content h1 {
+        font-size: 2.5rem;
+    }
 }
 
 /* =============== NAVBAR  =============== */
@@ -1453,7 +1779,6 @@ body.scrolled #banner {
         backdrop-filter: blur(20px); 
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         transition: max-height 0.5s ease;
-       
         max-height: 100vh; 
         overflow-y: auto;
     }
@@ -1536,6 +1861,15 @@ body.scrolled #banner {
     }
 }
 
+@media (max-width: 330px) {
+    .navbar-title {
+        font-size: 1rem;
+    }
+
+    .navbar {
+        width: 100%;
+    }
+}
 /* =============== FOOTER  =============== */
 @media (max-width: 768px) {
     .footer-content {
@@ -1574,14 +1908,15 @@ body.scrolled #banner {
         display: block; /* Oculta todas las páginas por defecto */
     }
 
-    .ant_sig{
-        display: none;
+    .container_registro .ant_sig1, 
+    .container_registro .ant_sig2 {
+        display: none; /* Se oculta por defecto */
     }
 
 }
 
 
-/* =============== CUENTA  =============== */
+/* =============== CUENTAS  =============== */
 @media (max-width: 600px) {
     table {
         width: 100%;
@@ -1666,6 +2001,10 @@ body.scrolled #banner {
         text-align: center;
     }
 
+    .admin_delete{
+        display: block;
+    }
+
 }
 
 
@@ -1700,6 +2039,10 @@ body.scrolled #banner {
         width: 100%;
     }
 
+    .tabla_registro_datos th:nth-child(5) {
+        max-width: none;
+    }
+
     .buscador select:focus {
         background-color: var(--color-oscuro);
         color: white; 
@@ -1717,11 +2060,64 @@ body.scrolled #banner {
     .tabla_registro_datos th:nth-child(4) {
         display: none; /* Oculta las columnas de DNI y Dirección en pantallas pequeñas */
     }
+
+    .tabla_registro_datos_formulario {
+        display: flex;
+        flex-direction: column; 
+    }
+    
+    .tabla_registro_datos_formulario tr {
+        display: flex; 
+        flex-direction: row; 
+    }
+    
+    .tabla_registro_datos_formulario td {
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center;
+        border: none; 
+        width: 100%;
+    }
+
+    
+    .tabla_registro_datos_formulario td:nth-child(1),
+    .tabla_registro_datos_formulario th:nth-child(1),
+    .tabla_registro_datos_formulario td:nth-child(4),
+    .tabla_registro_datos_formulario th:nth-child(4) {
+        display: none; /* Oculta las columnas de DNI y Dirección en pantallas pequeñas */
+    }
+
 }
+
 
 @media (max-width: 870px) {
 
     .form_registro{ 
         margin-top: 50px;
     }
+
+    .waves {
+        height:40px;
+        min-height:40px;
+    }
+    
+    .content {
+        height:30vh;
+    }
+    
+    .waves_div h1 {
+        font-size:34px;
+    }
 }
+
+@media (max-width: 500px) {
+    .prev-text,
+    .next-text {
+        display: none;
+    }
+
+    .buscador input::placeholder {
+        font-size: 15px; 
+    }
+}
+

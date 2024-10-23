@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("search");
     const cudFilter = document.getElementById("cud_filter");
-    const visitadoFilter = document.getElementById("visitado_filter");
     const tablaRegistro = document.getElementById("tabla_registro");
     const resultadoTexto = document.getElementById("resultado_texto");
     const prevPageBtn = document.getElementById("prevPage");
@@ -19,12 +18,11 @@ document.addEventListener("DOMContentLoaded", function () {
     function buscarDatos(page = 1) {
         const searchValue = searchInput.value;
         const cudValue = cudFilter.value;
-        const visitadoValue = visitadoFilter.value;
 
         const xhr = new XMLHttpRequest();
         xhr.open(
             "GET",
-            `php/buscador_registro.php?search=${encodeURIComponent(searchValue)}&cud_filter=${encodeURIComponent(cudValue)}&visitado_filter=${encodeURIComponent(visitadoValue)}&page=${page}&orderColumn=${currentOrderColumn}&orderDirection=${currentOrderDirection}`
+            `php/buscador_formulario.php?search=${encodeURIComponent(searchValue)}&cud_filter=${encodeURIComponent(cudValue)}&page=${page}&orderColumn=${currentOrderColumn}&orderDirection=${currentOrderDirection}`
         );
         xhr.onload = function () {
             if (xhr.status === 200) {
@@ -45,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Eventos de búsqueda
     searchInput.addEventListener("input", () => buscarDatos());
     cudFilter.addEventListener("change", () => buscarDatos());
-    visitadoFilter.addEventListener("change", () => buscarDatos());
 
     // Paginación
     prevPageBtn.addEventListener("click", () => {

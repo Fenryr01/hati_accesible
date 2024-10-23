@@ -37,7 +37,7 @@ if ($resultado->num_rows > 0) {
                 </div>
             </td>'; 
         } else {
-            echo '<td data-label="Eliminar">No se puede eliminar</td>'; // Mensaje o vacío si prefieres
+            echo '<td class="admin_delete" data-label="Eliminar"> No se puede eliminar</td>'; // Mensaje o vacío si prefieres
         }
         
         echo '</tr>';

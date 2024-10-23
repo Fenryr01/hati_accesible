@@ -19,7 +19,7 @@ include("navbar.php");
     <div class="waves_div">
         <!--Content before waves-->
         <div class="inner-header flex">
-            <h1>Tabla Registro</h1>
+            <h1>Tabla Formulario</h1>
         </div>
         <!--Waves Container-->
         <div>
@@ -40,30 +40,24 @@ include("navbar.php");
         <!--Waves end-->
         <section class="buscador">
             <h1>Buscador</h1>
-            <input type="text" id="search" placeholder="Buscar por nombre, apellido, dirección o DNI">
+            <input type="text" id="search" placeholder="Buscar por nombre, apellido, domicilio o DNI">
             <h1>Filtrar por CUD</h1>
             <select id="cud_filter">
                 <option value="">Todos</option>
                 <option value="1">Con CUD</option>
                 <option value="0">Sin CUD</option>
             </select>
-            <h1>Filtrar por Visitado</h1>
-            <select id="visitado_filter"> 
-                <option value="">Todos</option>
-                <option value="1">Visitado</option>
-                <option value="0">No Visitado</option>
-            </select>
         </section>
         <p id="resultado_texto">Resultados encontrados: 0</p>
         <section class="tabla_registro">
-            <table class="tabla_registro_datos">
+            <table class="tabla_registro_datos_formulario">
                 <thead>
                     <tr>
                         <th class="sortable" data-column="dni" data-order="asc">DNI <span class="sort-indicator"></span></th>
                         <th class="sortable" data-column="apellido" data-order="asc">Apellido <span class="sort-indicator"></span></th>
                         <th class="sortable" data-column="nombre" data-order="asc">Nombre <span class="sort-indicator"></span></th>
-                        <th class="sortable" data-column="direccion" data-order="asc">Dirección <span class="sort-indicator"></span></th>
-                        <th>Visitado</th>
+                        <th class="sortable" data-column="domicilio" data-order="asc">Domicilio <span class="sort-indicator"></span></th>
+                        <th class="sortable" data-column="necesita_asistencia" data-order="asc">Asistencia <span class="sort-indicator"></span></th>
                     </tr>
                 </thead>
                 <tbody id="tabla_registro">
@@ -73,21 +67,15 @@ include("navbar.php");
         </section>
         <!-- Paginación -->
         <div class="pagination">
-            <button class="ant_sig2" id="prevPage" disabled>
-                <i class="material-icons" style="padding-bottom: 3px; font-weight: bold; font-size: 25px;">keyboard_double_arrow_left</i>
-                <span class="prev-text">Anterior</span>
-            </button>
+            <button class="ant_sig2" id="prevPage" disabled><i class="material-icons" style="padding-bottom: 3px; font-weight: bold; font-size: 25px;">keyboard_double_arrow_left</i>Anterior</button>
             <input type="number" id="currentPage" value="1" min="1">
             <span id="totalPages"> / 1</span>
-            <button class="ant_sig1" id="nextPage">
-                <span class="next-text">Siguiente</span>
-                <i class="material-icons" style="padding-bottom: 3px; font-size: 25px; font-weight: bold">keyboard_double_arrow_right</i>
-            </button>
+            <button class="ant_sig1" id="nextPage">Siguiente <i class="material-icons" style="padding-bottom: 3px; font-size: 25px; font-weight: bold">keyboard_double_arrow_right</i></button>
         </div>
     </main>
 
     <?php include("footer.html"); ?>
-    <script src="js/buscador_registro.js"></script>
+    <script src="js/buscador_formulario.js"></script>
     <script src="js/navbar.js"></script>
     <script src="js/footer.js"></script>
 </body>

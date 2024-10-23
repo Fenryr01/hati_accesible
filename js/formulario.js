@@ -153,3 +153,57 @@ function cambiarPagina(nuevaPagina) {
     const nuevaPaginaElemento = document.getElementById(`pagina${nuevaPagina}`);
     nuevaPaginaElemento.style.display = 'block';
 }
+
+ // Seleccionamos el campo de fecha y el campo de edad
+ const nacimientoInput = document.getElementById('nacimiento');
+ const edadInput = document.getElementById('edad');
+
+ // Función para calcular la edad a partir de la fecha de nacimiento
+ nacimientoInput.addEventListener('change', function () {
+     const fechaNacimiento = new Date(this.value);
+     const hoy = new Date();
+     let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+     const mes = hoy.getMonth() - fechaNacimiento.getMonth();
+
+     // Ajuste si la fecha de nacimiento aún no ha ocurrido en el año actual
+     if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNacimiento.getDate())) {
+         edad--;
+     }
+
+     // Actualizamos el valor del campo de edad
+     edadInput.value = edad;
+ });
+
+function cambiarPagina(numeroPagina) {
+    // Primero, restablecemos el color de todos los textos
+    document.getElementById('datos_personales').style.color = '';
+    document.getElementById('datos_vivienda').style.color = '';
+    document.getElementById('datos_salud').style.color = '';
+
+    // Luego, cambiamos el color del texto según la página actual
+    if (numeroPagina === 1) {
+        document.getElementById('datos_personales').style.color = '#0167ff';
+    } else if (numeroPagina === 2) {
+        document.getElementById('datos_vivienda').style.color = '#0167ff';
+    } else if (numeroPagina === 3) {
+        document.getElementById('datos_salud').style.color = '#0167ff';
+    }
+
+    // Aquí también se puede agregar la lógica para mostrar/ocultar las secciones del formulario
+    mostrarPagina(numeroPagina);
+}
+
+function mostrarPagina(numeroPagina) {
+    // Esconde todas las páginas primero
+    document.getElementById('pagina1').style.display = 'none';
+    document.getElementById('pagina2').style.display = 'none';
+    document.getElementById('pagina3').style.display = 'none';
+
+    // Muestra solo la página correspondiente
+    document.getElementById('pagina' + numeroPagina).style.display = 'block';
+}
+
+// Mostrar la primera página al cargar el formulario
+window.onload = function() {
+    cambiarPagina(1);
+};

@@ -21,6 +21,11 @@
 
 
     <div class="container_registro">
+        <p class="datos_tab">
+            <span id="datos_personales">Datos Personales</span> /
+            <span id="datos_vivienda">Datos Vivienda</span> /
+            <span id="datos_salud">Datos Salud</span>
+        </p>
         <form class="form_registro" action="php/insertar_discapacidad.php" method="post" onsubmit="return validarFormulario()">
             <div class="pagina" id="pagina1">
                 <h2>Datos Personales</h2>
@@ -38,7 +43,7 @@
                 <input type="date" id="nacimiento" name="nacimiento" required>
 
                 <label for="edad">Edad:</label>
-                <input type="number" id="edad" name="edad" required>
+                <input type="number" id="edad" name="edad" disabled>
 
                 <label for="contacto">Contacto:</label>
                 <input type="text" id="contacto" name="contacto">
@@ -63,7 +68,7 @@
                 <div class="buton_ant_sig1">
                     <button class="ant_sig1" type="button" onclick="cambiarPagina(2)">
                         Siguiente
-                        <i class="material-icons" style="font-size: 30px;">double_arrow</i>
+                        <i class="material-icons" style="font-size: 30px; font-weight: bold; padding-bottom: 1px">keyboard_double_arrow_right</i>
                     </button>
                 </div>
             </div>
@@ -218,8 +223,8 @@
                 <textarea id="observacion_vivienda" name="observacion_vivienda" placeholder="Ingrese observaciones sobre la vivienda" rows="5" cols="50"></textarea>
                 
                 <div class="buton_ant_sig2">
-                    <button class="ant_sig2" type="button" onclick="cambiarPagina(1)"><i class="material-icons" style="font-size: 30px;">keyboard_double_arrow_left</i>Anterior</button>
-                    <button class="ant_sig1" type="button" onclick="cambiarPagina(3)">Siguiente<i class="material-icons" style="font-size: 30px;">double_arrow</i></button>
+                    <button class="ant_sig2" type="button" onclick="cambiarPagina(1)"><i class="material-icons" style="font-size: 30px; font-weight: bold; padding-bottom: 2px">keyboard_double_arrow_left</i>Anterior</button>
+                    <button class="ant_sig1" type="button" onclick="cambiarPagina(3)">Siguiente<i class="material-icons" style="font-size: 30px; font-weight: bold; padding-bottom: 2px">keyboard_double_arrow_right</i></button>
                 </div>
             </div>
 
@@ -270,7 +275,7 @@
                 <textarea id="observacion_salud" name="observacion_salud" placeholder="Ingrese observaciones sobre la salud" rows="5" cols="50" style="resize: none;"></textarea>
                 
                 <div class="buton_ant_sig3">
-                    <button class="ant_sig2" type="button" onclick="cambiarPagina(2)"><i class="material-icons" style="font-size: 30px;">keyboard_double_arrow_left</i>Anterior</button>
+                    <button class="ant_sig2" type="button" onclick="cambiarPagina(2)"><i class="material-icons" style="font-size: 30px; font-weight: bold; padding-bottom: 2px">keyboard_double_arrow_left</i>Anterior</button>
                 </div>
                 <input type="submit" value="Enviar">
             </div>

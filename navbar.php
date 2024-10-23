@@ -57,7 +57,7 @@ if ($requiredPermission && (!isset($_SESSION['permisos'][$requiredPermission]) |
                     <a href="javascript:void(0)" class="dropbtn" id="dropdownDataBtn">Datos</a>
                     <div class="dropdown-content">
                         <a href="tabla_registro.php">Tabla Registro</a>
-                        <a href="#tabla2">Tabla Formulario</a>
+                        <a href="tabla_formulario.php">Tabla Formulario</a>
                     </div>
                 </div>
             <?php endif; ?>
