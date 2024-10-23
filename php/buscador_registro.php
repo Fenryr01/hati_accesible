@@ -47,33 +47,11 @@ $dataHtml = '';
 while ($fila = mysqli_fetch_assoc($resultado)) {
     $checked = $fila['visitado'] ? 'checked' : '';
     $dataHtml .= "<tr class='data-row'>";
-    $dataHtml .= "<td>
-                    <div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>
-                        " . htmlspecialchars($fila['dni']) . "
-                    </div>
-                  </td>";
-    $dataHtml .= "<td>
-                    <div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>
-                        " . htmlspecialchars($fila['apellido']) . "
-                    </div>
-                  </td>";
-    $dataHtml .= "<td>
-                    <div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>
-                        " . htmlspecialchars($fila['nombre']) . "
-                    </div>
-                  </td>";
-    $dataHtml .= "<td>
-                    <div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>
-                        " . htmlspecialchars($fila['direccion']) . "
-                    </div>
-                  </td>";
-    $dataHtml .= "<td>
-                    <label class='switch'>
-                        <input type='checkbox' class='visitado-checkbox' data-id='" . $fila['id'] . "' $checked />
-                        <span class='slider'></span>
-                        <span class='knob'></span>
-                    </label>
-                  </td>";
+    $dataHtml .= "<td><div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>" . htmlspecialchars($fila['dni']) . "</div></td>";
+    $dataHtml .= "<td><div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>" . htmlspecialchars($fila['apellido']) . "</div></td>";
+    $dataHtml .= "<td><div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>" . htmlspecialchars($fila['nombre']) . "</div></td>";
+    $dataHtml .= "<td><div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>" . htmlspecialchars($fila['direccion']) . "</div></td>";
+    $dataHtml .= "<td><label class='switch'><input type='checkbox' class='visitado-checkbox' data-id='" . $fila['id'] . "' $checked /><span class='slider'></span><span class='knob'></span></label></td>";
     $dataHtml .= "</tr>";
 }
 
@@ -81,6 +59,9 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
 mysqli_free_result($resultado);
 mysqli_close($conexion);
 
+
+// Limpiar espacios en blanco y saltos de línea
+$dataHtml = preg_replace("/\s+/", " ", $dataHtml);
 // Devolver los datos en formato JSON
 echo json_encode([
     'data' => $dataHtml,

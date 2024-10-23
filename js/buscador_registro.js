@@ -28,13 +28,16 @@ document.addEventListener("DOMContentLoaded", function () {
         );
         xhr.onload = function () {
             if (xhr.status === 200) {
+                // Limpia saltos de línea y espacios en blanco de la respuesta
                 const response = JSON.parse(xhr.responseText);
-                tablaRegistro.innerHTML = response.data;
+                const cleanedData = response.data.replace(/\s+/g, ' ').trim(); // Reemplaza múltiples espacios y saltos de línea por uno solo
+        
+                tablaRegistro.innerHTML = cleanedData;
                 resultadoTexto.textContent = `Resultados encontrados: ${response.total_results}`;
                 totalPages = response.total_pages;
                 totalPagesSpan.textContent = ` / ${totalPages}`;
                 currentPageInput.value = page;
-
+        
                 prevPageBtn.disabled = (page === 1);
                 nextPageBtn.disabled = (page === totalPages || totalPages === 0);
             }
