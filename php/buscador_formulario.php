@@ -42,31 +42,11 @@ $resultado = mysqli_query($conexion, $query);
 $dataHtml = '';
 while ($fila = mysqli_fetch_assoc($resultado)) {
     $dataHtml .= "<tr class='data-row'>";
-    $dataHtml .= "<td>
-                    <div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>
-                        " . htmlspecialchars($fila['dni']) . "
-                    </div>
-                  </td>";
-    $dataHtml .= "<td>
-                        <div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>
-                            " . htmlspecialchars($fila['apellido']) . "
-                        </div>
-                    </td>";
-    $dataHtml .= "<td>
-                        <div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>
-                            " . htmlspecialchars($fila['nombre']) . "
-                        </div>
-                    </td>";
-    $dataHtml .= "<td>
-                        <div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>
-                            " . htmlspecialchars($fila['domicilio']) . "
-                        </div>
-                    </td>";
-    $dataHtml .= "<td>
-                        <div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>
-                            " . htmlspecialchars($fila['necesita_asistencia']) . "
-                        </div>
-                    </td>";
+    $dataHtml .= "<td><div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>" . htmlspecialchars($fila['dni']) . "</div></td>";
+    $dataHtml .= "<td><div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>" . htmlspecialchars($fila['apellido']) . "</div></td>";
+    $dataHtml .= "<td><div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>" . htmlspecialchars($fila['nombre']) . "</div></td>";
+    $dataHtml .= "<td><div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>" . htmlspecialchars($fila['domicilio']) . "</div></td>";
+    $dataHtml .= "<td><div class='nombre-apellido-wrapper' data-id='" . $fila['id'] . "' onclick=\"window.location.href='persona_registro.php?id=" . $fila['id'] . "';\" style='cursor: pointer;'>" . htmlspecialchars($fila['necesita_asistencia']) . "</div></td>";
     $dataHtml .= "</tr>";
 }
 
@@ -74,10 +54,12 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
 mysqli_free_result($resultado);
 mysqli_close($conexion);
 
+// Limpiar espacios en blanco y saltos de línea
+$dataHtml = preg_replace("/\s+/", " ", $dataHtml);
 // Devolver los datos en formato JSON
 echo json_encode([
     'data' => $dataHtml,
     'total_results' => $total_filas,
     'total_pages' => $total_paginas,
-]);
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 ?>
