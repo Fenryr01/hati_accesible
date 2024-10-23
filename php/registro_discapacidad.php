@@ -58,8 +58,8 @@ if ($count > 0) {
         $quienes = implode(", ", $quien_es); // Une los valores con coma
 
         // Preparar la consulta SQL
-        $sql = "INSERT INTO registro_discapacidad (nombre, apellido, dni, direccion, telefono, correo_electronico, certificado_discapacidad, quienes) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO registro_discapacidad (nombre, apellido, dni, direccion, telefono, correo_electronico, certificado_discapacidad, quienes, fecha_registro) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURDATE())";
 
         $stmt = $conexion->prepare($sql);
         $stmt->bind_param("ssssssss", $nombre, $apellido, $dni, $direccion, $telefono, $correo, $certificado_discapacidad, $quienes);
