@@ -86,5 +86,5 @@ echo json_encode([
     'data' => $dataHtml,
     'total_results' => $total_filas,
     'total_pages' => $total_paginas,
-]);
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 ?>
