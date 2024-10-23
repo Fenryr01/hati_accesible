@@ -24,8 +24,8 @@ if (isset($_GET['id'])) {
         $apellido = htmlspecialchars($fila['apellido']);
         $dni = htmlspecialchars($fila['dni']);
         $direccion = htmlspecialchars($fila['direccion']);
-        $telefono = htmlspecialchars($fila['telefono']);
-        $correo_electronico = htmlspecialchars($fila['correo_electronico']);
+        $telefono = htmlspecialchars($fila['telefono'] ?? '');
+        $correo_electronico = htmlspecialchars($fila['correo_electronico'] ?? '');
         $certificado_discapacidad = htmlspecialchars($fila['certificado_discapacidad']);
         // Obtener el valor de "quienes" de la base de datos
         $quienes = htmlspecialchars($fila['quienes']);
