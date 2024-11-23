@@ -63,7 +63,7 @@ if ($requiredPermission && (!isset($_SESSION['permisos'][$requiredPermission]) |
             <?php endif; ?>
 
             <?php if (isset($_SESSION['permisos']['graficos']) && $_SESSION['permisos']['graficos']): ?>
-                <a href="#graficos">Gráficos</a>
+                <a href="graficos.php">Gráficos</a>
             <?php endif; ?>
 
             <a href="#contacto">Contacto</a>

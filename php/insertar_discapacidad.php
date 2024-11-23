@@ -8,7 +8,7 @@ $dni = $_POST['dni'];
 $nacimiento = $_POST['nacimiento'];
 $contacto = !empty($_POST['contacto']) ? $_POST['contacto'] : NULL;
 $domicilio = $_POST['domicilio'];
-$barrio = $_POST['barrio'];
+$zona_id = $_POST['zona'];
 $tipo_tenencia = $_POST['tipo_tenencia'];
 $procedencia_agua = $_POST['procedencia_agua'];
 $cantidad_camas = $_POST['cantidad_camas'];
@@ -25,13 +25,15 @@ $lugar_atencion = $_POST['lugar_atencion'];
 $necesita_asistencia = $_POST['necesita_asistencia'];
 $quien_brinda_asistencia = $_POST['quien_brinda_asistencia'];
 $cobra_pension = $_POST['cobra_pension'];
+$tipo_pension = !empty($_POST['tipo_pension']) ? $_POST['tipo_pension'] : NULL;
 $miembros_grupo_familiar = $_POST['miembros_grupo_familiar'];
 $cantidad_ambientes = $_POST['cantidad_ambientes'];
 $numero_confort = $_POST['numero_confort'];
 $numero_discapacidades = $_POST['numero_discapacidades'];
-$observacion_salud = $_POST['observacion_salud'];
-$observacion_vivienda = $_POST['observacion_vivienda'];
-$observacion_datos_personales = $_POST['observacion_datos_personales'];
+$observacion_salud = !empty($_POST['observacion_salud']) ? $_POST['observacion_salud'] : NULL;
+$observacion_vivienda = !empty($_POST['observacion_vivienda']) ? $_POST['observacion_vivienda'] : NULL;
+$observacion_datos_personales = !empty($_POST['observacion_datos_personales']) ? $_POST['observacion_datos_personales'] : NULL;
+$fecha_formulario = $_POST['fecha_formulario'];
 
 // Verificar si el DNI ya existe en la base de datos
 $sql_verificar_dni = "SELECT id FROM personas WHERE dni = ?";
@@ -48,14 +50,20 @@ if ($stmt_verificar_dni->num_rows > 0) {
         </script>";
 } else {
     // Inserción en la tabla personas si el DNI no existe
-    $sql_persona = "INSERT INTO personas (nombre, apellido, dni, nacimiento, contacto, domicilio, barrio, tipo_tenencia, procedencia_agua, cantidad_camas, ventilacion, iluminacion, higiene, orden, existencia_sanitaria, letrina, barreras_arquitectonicas, cobertura, cud, lugar_atencion, necesita_asistencia, quien_brinda_asistencia, cobra_pension, observacion_salud, observacion_vivienda, observacion_datos_personales, miembros_grupo_familiar, cantidad_ambientes, numero_confort, numero_discapacidades)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql_persona = "INSERT INTO personas (nombre, apellido, dni, nacimiento, contacto, domicilio, zona, tipo_tenencia, procedencia_agua, cantidad_camas, ventilacion, iluminacion, higiene, orden, existencia_sanitaria, letrina, barreras_arquitectonicas, cobertura, cud, lugar_atencion, necesita_asistencia, quien_brinda_asistencia, cobra_pension, tipo_pension, observacion_salud, observacion_vivienda, observacion_datos_personales, miembros_grupo_familiar, cantidad_ambientes, numero_confort, numero_discapacidades, fecha_formulario)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt_persona = $conexion->prepare($sql_persona);
     if ($stmt_persona === false) {
         die("Error al preparar la consulta: " . $conexion->error);
     }
-    $stmt_persona->bind_param("sssssssssiiiiiisisisisisssiiii", $nombre, $apellido, $dni, $nacimiento, $contacto, $domicilio, $barrio, $tipo_tenencia, $procedencia_agua, $cantidad_camas, $ventilacion, $iluminacion, $higiene, $orden, $existencia_sanitaria, $letrina, $barreras_arquitectonicas, $cobertura, $cud, $lugar_atencion, $necesita_asistencia, $quien_brinda_asistencia, $cobra_pension, $observacion_salud, $observacion_vivienda, $observacion_datos_personales, $miembros_grupo_familiar, $cantidad_ambientes, $numero_confort, $numero_discapacidades);
+    
+    $stmt_persona->bind_param("ssisssissiiiiiisiiisisissssiiiis", 
+        $nombre, $apellido, $dni, $nacimiento, $contacto, $domicilio, $zona_id, $tipo_tenencia, $procedencia_agua, 
+        $cantidad_camas, $ventilacion, $iluminacion, $higiene, $orden, $existencia_sanitaria, $letrina, 
+        $barreras_arquitectonicas, $cobertura, $cud, $lugar_atencion, $necesita_asistencia, 
+        $quien_brinda_asistencia, $cobra_pension, $tipo_pension, $observacion_salud, $observacion_vivienda, 
+        $observacion_datos_personales, $miembros_grupo_familiar, $cantidad_ambientes, $numero_confort, $numero_discapacidades, $fecha_formulario);
 
     // Recibimos el número de miembros del grupo familiar
     $miembros_grupo_familiar = $_POST['miembros_grupo_familiar'];
@@ -65,19 +73,19 @@ if ($stmt_verificar_dni->num_rows > 0) {
 
         // Ahora insertamos en las otras tablas relacionadas, utilizando $persona_id
         // Insertar datos en la tabla grupo_familiar
-        $sql_grupo_familiar = "INSERT INTO grupo_familiar (persona_id, quien, edad, escolaridad, trabajo, donde) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql_grupo_familiar = "INSERT INTO grupo_familiar (persona_id, quien, nacimiento, escolaridad, trabajo, donde) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt_grupo_familiar = $conexion->prepare($sql_grupo_familiar);
 
         // Recorremos los datos de cada miembro del grupo familiar y los insertamos
         for ($i = 1; $i <= $miembros_grupo_familiar; $i++) {
             $quien = $_POST["quien_$i"];
-            $edad = $_POST["edad_$i"];
+            $nacimiento = $_POST["nacimiento_$i"];
             $escolaridad = $_POST["escolaridad_$i"];
             $trabajo = $_POST["trabajo_$i"];  // Este valor será 1 o 0 según lo seleccionado en el formulario
             $donde = $_POST["donde_$i"];
 
             // Asociamos los valores a los placeholders
-            $stmt_grupo_familiar->bind_param("isssss", $persona_id, $quien, $edad, $escolaridad, $trabajo, $donde);
+            $stmt_grupo_familiar->bind_param("isssss", $persona_id, $quien, $nacimiento, $escolaridad, $trabajo, $donde);
 
             // Ejecutamos la consulta para cada miembro
             if (!$stmt_grupo_familiar->execute()) {
@@ -177,7 +185,7 @@ if ($stmt_verificar_dni->num_rows > 0) {
                     $discapacidad = $_POST['discapacidad'][$i];
 
                     if (!empty($tipo) && !empty($discapacidad)) { // Verificar que ambos valores no estén vacíos
-                        $stmt_discapacidad->bind_param("iss", $persona_id, $tipo, $discapacidad);
+                        $stmt_discapacidad->bind_param("iis", $persona_id, $tipo, $discapacidad);
                         $stmt_discapacidad->execute();
                     }
                 }

@@ -569,7 +569,7 @@ body.scrolled #banner {
     background: linear-gradient(135deg, #00e6c3, #00a1ff);
     position: relative;
     overflow: hidden;
-    
+    z-index: 2;
 }
 
 .footer-content {
@@ -1590,6 +1590,133 @@ body.scrolled #banner {
     text-align: start;
 }
 
+button.noselect {
+    width: 180px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: rgb(0, 148, 153);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    padding: 0px;
+    justify-content: space-between; 
+    margin-bottom: 15px;
+}
+
+button.noselect, button.noselect span {
+    transition: 200ms;
+}
+
+button.noselect .text {
+    transform: translateX(35px);
+    color: white;
+    font-weight: bold;
+}
+
+button.noselect .material-icons {
+    border-left: 1px solid rgb(0, 99, 102);
+    transform: translateX(140px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    position: absolute;
+}
+
+
+button.noselect:hover {
+    background: rgb(0, 191, 197);
+}
+
+button.noselect:hover .text {
+    color: transparent;
+}
+
+button.noselect:hover .material-icons {
+    width: 180px;
+    border-left: none;
+    transform: translateX(0);
+}
+
+button.noselect:focus {
+    outline: none;
+}
+
+
+
+/*===============  ACCORDEON O EXPANSION TILE =============== */
+.accordion {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    background: linear-gradient(105deg, rgb(0, 41, 94),rgb(0, 80, 100) ,rgb(1, 129, 161) ,rgb(58, 193, 255) );
+    transition: all 0.5s ease; 
+    padding: 10px 15px;
+    border: 0px solid #cccccc00;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    outline: none;
+    width: 100%;
+    border-bottom-left-radius: 15px; 
+    border-bottom-right-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.accordion.active {
+    background: linear-gradient(105deg, rgb(18, 156, 219),rgb(1, 129, 161), rgb(0, 80, 100) ,rgba(0, 31, 71) );
+}
+
+.accordion:hover { 
+    animation: gradientMove 3s linear infinite;
+    background: linear-gradient(105deg, rgb(0, 94, 24) ,rgb(0, 141, 35) ,rgb(58, 255, 107) );
+    background-size: 200% 300%;
+}
+
+.material-icons {
+    transition: transform 0.3s ease-in-out; /* Suaviza la rotación */
+}
+
+.material-icons.rotate {
+    transform: rotate(180deg); /* Rota la flecha 180 grados */
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.panel {
+    overflow: hidden; 
+    max-height: 0; 
+    opacity: 0; 
+    transition: max-height 0.4s ease, opacity 0.4s ease; 
+    background-color: #d1d1d1;
+    padding: 0 15px; 
+}
+
+.panel.open {
+    opacity: 1; 
+    padding: 0 25px;
+}
+
+.panel_colum {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem; 
+}
+
 
 /* =============== PERSONA REGISTRO =============== */
 .botones_row{
@@ -1644,6 +1771,150 @@ body.scrolled #banner {
 .btn-back:hover{ 
     background: linear-gradient(135deg, rgb(0, 134, 175),rgb(71, 135, 255));
     color: #86fd8c;
+}
+
+/* =============== MENU GRAFICOS =============== */
+
+
+.content-menu{
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100px; 
+    height: 100vh; 
+    background: #161616;
+    padding-top: 125px; 
+    z-index: 1; 
+    transition: all 300ms;
+}
+
+.content-menu li{
+    list-style: none;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    color: white;
+    transition: all 300ms;
+    cursor: pointer;
+    margin-bottom: 25px;
+}
+
+.content-menu li:hover{
+    transform: translateY(10px);
+    background: rgba(0,0,0,0.5);
+}
+
+.content-menu li span{
+    font-size: 40px;
+}
+
+.content-menu li h4{
+    font-weight: 100;
+    transform: translateY(18px) translateX(-110px);
+    transition: all 300ms;
+    
+}
+
+.content-menu:hover .text1{
+    transform: translateX(0px);
+    transition: all 100ms;
+}
+
+.content-menu:hover .text2{
+    transform: translateX(0px);
+    transition: all 200ms;
+}
+
+
+.content-menu:hover .text3{
+    transform: translateX(0px);
+    transition: all 300ms;
+}
+
+
+.content-menu:hover .text4{
+    transform: translateX(0px);
+    transition: all 400ms;
+}
+
+.graficos_contenedor{
+    position: relative;
+ 
+}
+
+.main_general_grafico{
+    justify-content: start; 
+    align-items: start;
+    padding-top: 20px;
+    margin-left: 115px;
+    margin-right: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 25px;  
+ 
+}
+
+.buton_grafico {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: flex-start; 
+    width: 100%;
+    height: 100%;
+    padding: 40px 20px 0px 20px;
+}
+
+.buton_grafico button {
+    background-color: #007bff8f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 0;
+}
+
+
+.grafico-container {
+    width: 100%; 
+    height: 400px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+
+}
+
+#titulo {
+    text-align: center;
+    margin: 0;
+    font-size: 1.5em;
+}
+
+/* Colores */
+.icon-general, .text1{
+    color: #2E93FA; /* Azul para el icono General */
+}
+
+.icon-salud, .text2{
+    color: #FF4081; /* Rosa para el icono Salud */
+}
+
+.icon-vivienda, .text3{
+    color: #66DA26; /* Verde para el icono Vivienda */
+}
+
+.icon-todos, .text4{
+    color: #FF9800; /* Naranja para el icono Todos */
+}
+
+.content-menu li.active {
+    background-color: rgba(255, 255, 255, 0.178);
+    
 }
 
 /* =============== RESPONSIVE =============== */
@@ -2108,6 +2379,10 @@ body.scrolled #banner {
     .waves_div h1 {
         font-size:34px;
     }
+
+    .panel_colum {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 500px) {
@@ -2121,3 +2396,31 @@ body.scrolled #banner {
     }
 }
 
+/* =============== GRAFICOS  =============== */
+@media (max-width: 600px) {
+    .main_general_grafico {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 400px)); 
+        margin-left: 100px;
+        padding-top: 75px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .grafico-container {
+        height: 200px;  
+    }
+
+    #titulo {
+        font-size: 1em;
+    }
+
+    .buton_grafico {
+        visibility: hidden;
+    }
+
+    .content-menu li{
+        height: 50px;
+        padding-bottom: 50px;
+    }  
+    
+}

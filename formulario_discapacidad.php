@@ -30,6 +30,9 @@
             <div class="pagina" id="pagina1">
                 <h2>Datos Personales</h2>
 
+                <label for="fecha_formulario">Fecha de visita:</label>
+                <input type="date" name="fecha_formulario" id="fecha_formulario" required>
+
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required>
 
@@ -51,16 +54,28 @@
                 <label for="domicilio">Domicilio:</label>
                 <input type="text" id="domicilio" name="domicilio" required>
 
-                <label for="barrio">Barrio:</label>
-                <input type="text" id="barrio" name="barrio" required>
+                <label for="zona">Zona:</label>
+                <select id="zona" name="zona" required>
+                    <option value="" disabled selected>Seleccione una zona</option>
+                    <!-- Las opciones se llenarán mediante JavaScript -->
+                </select>
 
                 <!-- GRUPO FAMILIAR -->
                 <label for="miembros_grupo_familiar">Número de miembros del grupo familiar:</label>
                 <input type="number" id="miembros_grupo_familiar" name="miembros_grupo_familiar" min="0" required>
+
+                <!-- para enviar el array al vacio al formulario sino no anda la tabla formulario, dios querido ayuda -->
+                <?php 
+                    $grupo_familiar = [];
+                    echo "<script>const miembrosFamiliares = " . json_encode($grupo_familiar) . ";</script>"; 
+                ?>
                 
                 <div id="grupo_familiar_container">
                     <!-- Aquí se generarán los inputs dinámicos -->
                 </div>
+
+                
+                
 
                 <label for="observacion_datos_personales">Observaciones de Datos Personales:</label>
                 <textarea id="observacion_datos_personales" name="observacion_datos_personales" placeholder="Ingrese observaciones sobre los datos personales" rows="5" cols="50"></textarea>
@@ -151,6 +166,12 @@
                 <input type="number" id="cantidad_ambientes" name="cantidad_ambientes" required min="0" oninput="mostrarUsoAmbientes(this.value)">
 
                 <div id="contenedorUsoAmbientes"></div>
+                <?php 
+                    $uso_ambiente = [];
+                    echo "<script>const UsoAmbientes = " . json_encode($uso_ambiente) . ";</script>";
+                ?>
+
+      
 
                 <label for="cantidad_camas">Cantidad de Camas:</label>
                 <input type="number" id="cantidad_camas" name="cantidad_camas" required>
@@ -158,29 +179,26 @@
                 <label for="ventilacion">Ventilación</label>
                 <select id="ventilacion" name="ventilacion" required>
                     <option value="" disabled selected>Seleccione una opción</option>
-                    <option value="1">Si</option>
-                    <option value="0">No</option>
                 </select>
 
                 <label for="iluminacion">Iluminación:</label>
                 <select id="iluminacion" name="iluminacion" required>
                     <option value="" disabled selected>Seleccione una opción</option>
-                    <option value="1">Si</option>
-                    <option value="0">No</option>
                 </select>
 
                 <label for="higiene">Higiene:</label>
                 <select id="higiene" name="higiene" required>
                     <option value="" disabled selected>Seleccione una opción</option>
-                    <option value="1">Si</option>
-                    <option value="0">No</option>
                 </select>
 
                 <label for="orden">Orden:</label>
                 <select id="orden" name="orden" required>
                     <option value="" disabled selected>Seleccione una opción</option>
-                    <option value="1">Si</option>
-                    <option value="0">No</option>
+                </select>
+
+                <label for="barreras_arquitectonicas">Barreras Arquitectónicas:</label>
+                <select id="barreras_arquitectonicas" name="barreras_arquitectonicas" required>
+                    <option value="" disabled selected>Seleccione una opción</option>
                 </select>
 
                 <label for="existencia_sanitaria">Existencia Sanitaria:</label>
@@ -211,15 +229,12 @@
                 <input type="number" id="numero_confort" name="numero_confort" required min="0" oninput="mostrarElementosConfort(this.value)">
 
                 <div id="contenedorElementosConfort"></div>
+                <?php 
+                    $elementos = [];
+                    echo "<script>const elementos_confort = " . json_encode($elementos) . ";</script>";
+                ?>
 
-                <label for="barreras_arquitectonicas">Barreras Arquitectónicas:</label>
-                <select id="barreras_arquitectonicas" name="barreras_arquitectonicas" required>
-                    <option value="" disabled selected>Seleccione una opción</option>
-                    <option value="1">Si</option>
-                    <option value="0">No</option>
-                </select>
-
-                <label for="observacion_vivienda">Observaciones:</label>
+                <label for="observacion_vivienda">Observaciones vivienda:</label>
                 <textarea id="observacion_vivienda" name="observacion_vivienda" placeholder="Ingrese observaciones sobre la vivienda" rows="5" cols="50"></textarea>
                 
                 <div class="buton_ant_sig2">
@@ -236,6 +251,10 @@
                 <input type="number" id="numero_discapacidades" name="numero_discapacidades" required min="1" oninput="updateDiscapacidadInputs()">
 
                 <div id="discapacidad_inputs"></div>
+                <?php 
+                    $discapacidades = [];
+                    echo "<script>const discapacidadesSeleccionadas = " . json_encode($discapacidades) . ";</script>";
+                ?>
 
                 <label for="cobertura">Cobertura:</label>
                 <select id="cobertura" name="cobertura" required>
@@ -261,7 +280,7 @@
                     <option value="0">No</option>
                 </select>
 
-                <label for="quien_brinda_asistencia">¿Quién brinda asistencia?</label>
+                <label for="quien_brinda_asistencia">¿Quién le brinda asistencia?</label>
                 <input type="text" id="quien_brinda_asistencia" name="quien_brinda_asistencia">
 
                 <label for="cobra_pension">¿Cobra pensión?</label>
@@ -269,6 +288,13 @@
                     <option value="" disabled selected>Seleccione una opción</option>
                     <option value="1">Si</option>
                     <option value="0">No</option>
+                </select>
+
+                <label for="tipo_pension">Tipo de pension:</label>
+                <select id="tipo_pension" name="tipo_pension">
+                    <option value="" disabled selected>Seleccione una opción</option>
+                    <option value="IPS">IPS</option>
+                    <option value="ANSES">ANSES</option>
                 </select>
 
                 <label for="observacion_salud">Observaciones de Salud:</label>

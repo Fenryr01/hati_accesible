@@ -29,8 +29,12 @@ if ($visitado_filter !== '') {
     $query .= " AND visitado = $visitado_filter";
 }
 
-// Ordenar los resultados
-$query .= " ORDER BY $orderColumn $orderDirection";
+// Ordenar los resultados, usando CAST(dni AS UNSIGNED) para orden numérico
+if ($orderColumn == 'dni') {
+    $query .= " ORDER BY CAST(dni AS UNSIGNED) $orderDirection";
+} else {
+    $query .= " ORDER BY $orderColumn $orderDirection";
+}
 
 // Contar el número total de resultados
 $total_query = str_replace("SELECT id, nombre, apellido, dni, direccion, visitado", "SELECT COUNT(*) as total", $query);

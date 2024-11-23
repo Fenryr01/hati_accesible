@@ -40,13 +40,138 @@ include("navbar.php");
         <!--Waves end-->
         <section class="buscador">
             <h1>Buscador</h1>
-            <input type="text" id="search" placeholder="Buscar por nombre, apellido, domicilio o DNI">
-            <h1>Filtrar por CUD</h1>
-            <select id="cud_filter">
-                <option value="">Todos</option>
-                <option value="1">Con CUD</option>
-                <option value="0">Sin CUD</option>
-            </select>
+            <input type="text" id="search" placeholder="Buscar por nombre, apellido, domicilio, discapacidad o DNI">
+
+            <h1>Filtros</h1>
+            <button class="noselect" id="reiniciarFiltros">
+                <span class="text">Reiniciar</span><span class="material-icons">restart_alt</span>
+            </button>
+            <button class="accordion">
+                <span class="material-icons">person</span>    
+                Persona
+                <span class="material-icons">expand_more</span> 
+            </button>
+            <div class="panel">
+                <div class="panel_colum">
+                    <div>
+                        <h1>año</h1>
+                        <select id="año_filter"></select>
+                    </div>
+                    <div>            
+                        <h1>mes</h1>
+                        <select id="mes_filter">
+                            <option value="">Todos</option>
+                            <option value="1">Enero</option>
+                            <option value="2">Febrero</option>
+                            <option value="3">Marzo</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Mayo</option>
+                            <option value="6">Junio</option>
+                            <option value="7">Julio</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Septiembre</option>
+                            <option value="10">Octubre</option>
+                            <option value="11">Noviembre</option>
+                            <option value="12">Diciembre</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="panel_colum">
+                    <div>
+                        <h1>edad</h1>
+                        <select id="edad_filter">
+                            <option value="">Todos</option>
+                            <option value="1">Menores de 18</option>
+                            <option value="2">Entre 18 y 50</option>
+                            <option value="3">Mayores de 50</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h1>zona</h1>
+                        <select id="zona_filter"></select>
+                    </div>
+                </div>
+            </div>
+
+            <button class="accordion">
+                <span class="material-icons">favorite</span>   
+                Salud
+                <span class="material-icons">expand_more</span> 
+            </button>
+            <div class="panel">
+                <div class="panel_colum">
+                    <div>
+                        <h1>CUD</h1>
+                        <select id="cud_filter">
+                            <option value="">Todos</option>
+                            <option value="1">Con CUD</option>
+                            <option value="0">Sin CUD</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h1>Necesita asistencia</h1>
+                        <select id="asistencia_filter">
+                            <option value="">Todos</option>
+                            <option value="1">Si</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="panel_colum">
+                    <div>
+                        <h1>Tipo de discapacidad</h1>
+                        <select id="discapacidad_filter"></select>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="accordion">
+                <span class="material-icons">house</span> 
+                Vivienda
+                <span class="material-icons">expand_more</span> 
+            </button>
+            <div class="panel">
+                <div class="panel_colum">
+                    <div>
+                        <h1>tipo de tenencia</h1>
+                        <select id="tenencia_filter">
+                            <option value="">Todos</option>
+                            <option value="Propia">Propia</option>
+                            <option value="Alquila">Alquila</option>
+                            <option value="Cedida">Cedido</option>
+                            <option value="Prestada">Prestada</option>
+                            <option value="Usurpada">Usurpada</option>
+                        </select>
+                    </div>
+                    <div>            
+                        <h1>barreras arquitectonicas</h1>
+                        <select id="barreras_filter"></select>
+                    </div>
+                </div>
+                <div class="panel_colum">
+                    <div>
+                        <h1>ventilacion</h1>
+                        <select id="ventilacion_filter"></select>
+                    </div>
+                    <div>
+                        <h1>higiene</h1>
+                        <select id="higiene_filter"></select>
+                    </div>
+                </div>
+                <div class="panel_colum">
+                    <div>
+                        <h1>orden</h1>
+                        <select id="orden_filter"></select>
+                    </div>
+                    <div>
+                        <h1>iluminacion</h1>
+                        <select id="iluminacion_filter"></select>
+                    </div>
+                </div>
+            </div>
+
         </section>
         <p id="resultado_texto">Resultados encontrados: 0</p>
         <section class="tabla_registro">
@@ -57,7 +182,6 @@ include("navbar.php");
                         <th class="sortable" data-column="apellido" data-order="asc">Apellido <span class="sort-indicator"></span></th>
                         <th class="sortable" data-column="nombre" data-order="asc">Nombre <span class="sort-indicator"></span></th>
                         <th class="sortable" data-column="domicilio" data-order="asc">Domicilio <span class="sort-indicator"></span></th>
-                        <th class="sortable" data-column="necesita_asistencia" data-order="asc">Asistencia <span class="sort-indicator"></span></th>
                     </tr>
                 </thead>
                 <tbody id="tabla_registro">

@@ -192,25 +192,25 @@ document.addEventListener('DOMContentLoaded', mostrarZonas);
 
 
 async function mostrarElementosConfort(numeroConfort) {
+    
     const contenedor = document.getElementById('contenedorElementosConfort');
     contenedor.innerHTML = ''; // Limpiar el contenedor antes de agregar nuevos campos
 
     if (numeroConfort > 0) {
         try {
-            // Obtener las opciones de los elementos de confort desde `get_valor.php`
+            // Obtener los elementos de confort desde PHP usando fetch
             const response = await fetch('php/get_valor.php');
             const datos = await response.json();
 
-            const opcionesConfort = datos.elementos_confort; // Opciones de los selects
-            const valoresSeleccionados = elementos_confort; // Valores pasados por el PHP
+            // Llenar el select con los elementos de confort obtenidos
+            const elementosConfort = datos.elementos_confort;
 
             for (let i = 0; i < numeroConfort; i++) {
                 let selectOptions = `<option value="" disabled selected>Seleccione una opción</option>`;
 
-                // Crear las opciones para el select
-                opcionesConfort.forEach(elemento => {
-                    const isSelected = valoresSeleccionados[i] === elemento.id ? 'selected' : '';
-                    selectOptions += `<option value="${elemento.id}" ${isSelected}>${elemento.cual_elemento}</option>`;
+                // Llenar el select con las opciones de confort
+                elementosConfort.forEach(elemento => {
+                    selectOptions += `<option value="${elemento.id}">${elemento.cual_elemento}</option>`;
                 });
 
                 contenedor.innerHTML += `
@@ -222,18 +222,14 @@ async function mostrarElementosConfort(numeroConfort) {
                 `;
             }
         } catch (error) {
-            console.error('Error al obtener las opciones de confort:', error);
+            console.error('Error al obtener elementos de confort:', error);
         }
     }
 }
-document.addEventListener('DOMContentLoaded', () => {
-    mostrarElementosConfort(numeroConfort);
-});
-
 
 
 async function updateDiscapacidadInputs() {
-    const cantidad = parseInt(document.getElementById('numero_discapacidades').value, 10); // Convertir a número
+    const cantidad = document.getElementById('numero_discapacidades').value; // Acceder al valor
     const contenedor = document.getElementById('discapacidad_inputs');
     contenedor.innerHTML = ''; // Limpiar entradas anteriores
 
@@ -241,45 +237,36 @@ async function updateDiscapacidadInputs() {
         try {
             // Obtener los tipos de discapacidad desde PHP usando fetch
             const response = await fetch('php/get_valor.php');
-            if (!response.ok) throw new Error('Error al obtener los datos de discapacidad');
             const data = await response.json();
-            const tiposDiscapacidad = data.tipos_discapacidad; // Array de objetos [{ id, cual_discapacidad }]
+            const discapacidades = data.tipos_discapacidad; // Asegúrate de acceder a la clave correcta del JSON
 
-            // Iterar para generar los inputs dinámicos
+            // Generar los selects e inputs según el número de discapacidades
             for (let i = 0; i < cantidad; i++) {
                 let selectOptions = `<option value="" disabled selected>Seleccione tipo de discapacidad</option>`;
-                
-                // Autocompletar según discapacidadesSeleccionadas si está definido
-                const selectedValue =
-                    discapacidadesSeleccionadas?.[i]?.tipo_discapacidad || '';
-                const inputValue =
-                    discapacidadesSeleccionadas?.[i]?.discapacidad || '';
 
-                // Crear las opciones del select
-                tiposDiscapacidad.forEach(discapacidad => {
-                    const isSelected = discapacidad.id == selectedValue ? 'selected' : '';
-                    selectOptions += `<option value="${discapacidad.id}" ${isSelected}>${discapacidad.cual_discapacidad}</option>`;
+                // Llenar el select con las discapacidades obtenidas
+                discapacidades.forEach(discapacidad => {
+                    selectOptions += `<option value="${discapacidad.id}">${discapacidad.cual_discapacidad}</option>`;
                 });
 
-                // Agregar los elementos al contenedor
+                // Agregar el select y el input al contenedor
                 contenedor.innerHTML += `
                     <h4>Discapacidad ${i + 1}</h4>
                     <select id="tipo_discapacidad_${i}" name="tipo_discapacidad[]" required>
                         ${selectOptions}
                     </select>
-                    <input type="text" id="discapacidad_${i}" name="discapacidad[]" placeholder="Discapacidad específica" value="${inputValue}" required>
+                    <input type="text" id="discapacidad_${i}" name="discapacidad[]" placeholder="Discapacidad específica" required>
                     <hr>
                 `;
             }
         } catch (error) {
-            console.error('Error al generar los campos:', error);
+            console.error('Error al obtener discapacidades:', error);
         }
     }
 }
 
-// Llamar a la función cuando se cambie el valor del input número
-document.addEventListener('DOMContentLoaded', updateDiscapacidadInputs);
-
+// Llamar a la función cuando se cambie el valor de numero_discapacidades
+document.getElementById('numero_discapacidades').addEventListener('change', updateDiscapacidadInputs);
 
 
 async function mostrarValores() {
