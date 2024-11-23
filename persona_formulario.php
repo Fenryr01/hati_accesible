@@ -39,18 +39,18 @@
             $barreras_arquitectonicas = htmlspecialchars($fila['barreras_arquitectonicas']);
             $cobertura = htmlspecialchars($fila['cobertura']);
             $cud = htmlspecialchars($fila['cud']);
-            $lugar_atencion = htmlspecialchars($fila['lugar_atencion']);
+            $lugar_atencion = htmlspecialchars($fila['lugar_atencion'] ?? '');
             $necesita_asistencia = htmlspecialchars($fila['necesita_asistencia']);
-            $quien_brinda_asistencia = htmlspecialchars($fila['quien_brinda_asistencia']);
+            $quien_brinda_asistencia = htmlspecialchars($fila['quien_brinda_asistencia'] ?? '');
             $cobra_pension = htmlspecialchars($fila['cobra_pension']);
-            $observacion_salud = htmlspecialchars($fila['observacion_salud']);
-            $observacion_vivienda = htmlspecialchars($fila['observacion_vivienda']);
-            $observacion_datos_personales = htmlspecialchars($fila['observacion_datos_personales']);
+            $observacion_salud = htmlspecialchars($fila['observacion_salud'] ?? '');
+            $observacion_vivienda = htmlspecialchars($fila['observacion_vivienda'] ?? '');
+            $observacion_datos_personales = htmlspecialchars($fila['observacion_datos_personales'] ?? '');
             $miembros_grupo_familiar = htmlspecialchars($fila['miembros_grupo_familiar']);
             $cantidad_ambientes = htmlspecialchars($fila['cantidad_ambientes']);
             $numero_confort = htmlspecialchars($fila['numero_confort']);
             $numero_discapacidades = htmlspecialchars($fila['numero_discapacidades']);
-            $tipo_pension = htmlspecialchars($fila['tipo_pension']);
+            $tipo_pension = htmlspecialchars($fila['tipo_pension'] ?? '');
             $fecha_formulario = htmlspecialchars($fila['fecha_formulario']);
 
             // Obtener datos del grupo familiar asociado a la persona
