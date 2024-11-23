@@ -158,8 +158,11 @@
 </head>
 <body>
 
-
+    <a href="tabla_formulario.php" class="btn-back">
+        <span class="material-icons" style="font-size: 50px;">arrow_back</span>
+    </a>
     <div class="container_registro">
+        
         <p class="datos_tab">
             <span id="datos_personales">Datos Personales</span> /
             <span id="datos_vivienda">Datos Vivienda</span> /
