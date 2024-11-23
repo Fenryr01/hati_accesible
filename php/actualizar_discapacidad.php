@@ -249,7 +249,7 @@ if (isset($_POST['eliminar_registro'])) {
     $stmt->close();
 }
 
-echo "Los datos se han actualizado correctamente.";
+echo "<script>window.location.href='../tabla_formulario.php';</script>";
 
 
 $conexion->close();
