@@ -66,7 +66,7 @@ if ($requiredPermission && (!isset($_SESSION['permisos'][$requiredPermission]) |
                 <a href="graficos.php">Gráficos</a>
             <?php endif; ?>
 
-            <a href="#contacto">Contacto</a>
+            <a href="about.php">Contacto</a>
 
             <?php if (isset($_SESSION['username'])): ?>
                 <div class="dropdown">
