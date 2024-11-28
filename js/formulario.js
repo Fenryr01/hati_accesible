@@ -38,22 +38,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 miembroDiv.innerHTML = `
                     <h4>Miembro ${i}</h4>
-                    <label>¿Quién es?</label>
+                    <label>¿Quién es?<span class="obligatorio">*</span></label>
                     <input type="text" name="quien_${i}" value="${quien}" required><br>
 
-                    <label>Fecha de Nacimiento</label>
+                    <label>Fecha de Nacimiento<span class="obligatorio">*</span></label>
                     <input type="date" id="nacimiento_${i}" name="nacimiento_${i}" value="${nacimiento}" required><br>
 
                     <label>Edad</label>
                     <input type="number" id="edad_${i}" name="edad_${i}" disabled><br>
 
-                    <label>Escolaridad</label>
+                    <label>Escolaridad<span class="obligatorio">*</span></label>
                     <select name="escolaridad_${i}" required>
                         <option value="1" ${escolaridad === '1' ? 'selected' : ''}>Si</option>
                         <option value="0" ${escolaridad === '0' ? 'selected' : ''}>No</option>
                     </select><br>
 
-                    <label>¿Tiene trabajo?</label>
+                    <label>¿Tiene trabajo?<span class="obligatorio">*</span></label>
                     <select name="trabajo_${i}" required>
                         <option value="1" ${trabajo === '1' ? 'selected' : ''}>Si</option>
                         <option value="0" ${trabajo === '0' ? 'selected' : ''}>No</option>

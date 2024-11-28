@@ -21,6 +21,7 @@
 
 
     <div class="container_registro">
+        <p class="info-obligatorios">Los campos con <span class="obligatorio">*</span> son obligatorios.</p>
         <p class="datos_tab">
             <span id="datos_personales">Datos Personales</span> /
             <span id="datos_vivienda">Datos Vivienda</span> /
@@ -30,38 +31,38 @@
             <div class="pagina" id="pagina1">
                 <h2>Datos Personales</h2>
 
-                <label for="fecha_formulario">Fecha de visita:</label>
+                <label for="fecha_formulario">Fecha de visita:<span class="obligatorio">*</span></label>
                 <input type="date" name="fecha_formulario" id="fecha_formulario" required>
 
-                <label for="nombre">Nombre:</label>
+                <label for="nombre">Nombre:<span class="obligatorio">*</span></label>
                 <input type="text" id="nombre" name="nombre" required>
 
-                <label for="apellido">Apellido:</label>
+                <label for="apellido">Apellido:<span class="obligatorio">*</span></label>
                 <input type="text" id="apellido" name="apellido" required>
 
-                <label for="dni">DNI:</label>
+                <label for="dni">DNI:<span class="obligatorio">*</span></label>
                 <input type="number" id="dni" name="dni" required>
 
-                <label for="nacimiento">Fecha de Nacimiento:</label>
+                <label for="nacimiento">Fecha de Nacimiento:<span class="obligatorio">*</span></label>
                 <input type="date" id="nacimiento" name="nacimiento" required>
 
                 <label for="edad">Edad:</label>
                 <input type="number" id="edad" name="edad" disabled>
 
-                <label for="contacto">Contacto:</label>
+                <label for="contacto">Contacto:<span class="obligatorio">*</span></label>
                 <input type="text" id="contacto" name="contacto">
 
-                <label for="domicilio">Domicilio:</label>
+                <label for="domicilio">Domicilio:<span class="obligatorio">*</span></label>
                 <input type="text" id="domicilio" name="domicilio" required>
 
-                <label for="zona">Zona:</label>
+                <label for="zona">Zona:<span class="obligatorio">*</span></label>
                 <select id="zona" name="zona" required>
                     <option value="" disabled selected>Seleccione una zona</option>
                     <!-- Las opciones se llenarán mediante JavaScript -->
                 </select>
 
                 <!-- GRUPO FAMILIAR -->
-                <label for="miembros_grupo_familiar">Número de miembros del grupo familiar:</label>
+                <label for="miembros_grupo_familiar">Número de miembros del grupo familiar:<span class="obligatorio">*</span></label>
                 <input type="number" id="miembros_grupo_familiar" name="miembros_grupo_familiar" min="0" required>
 
                 <!-- para enviar el array al vacio al formulario sino no anda la tabla formulario, dios querido ayuda -->
@@ -91,7 +92,7 @@
             <div class="pagina" id="pagina2">
                 <h2>Vivienda</h2>
 
-                <label for="tipo_tenencia">Tipo de Tenencia:</label>
+                <label for="tipo_tenencia">Tipo de Tenencia:<span class="obligatorio">*</span></label>
                 <select id="tipo_tenencia" name="tipo_tenencia" required>
                     <option value="" disabled selected>Seleccione una opción</option>
                     <option value="propia">Propia</option>
@@ -162,7 +163,7 @@
                 </div>
 
                 <!-- AMBIENTES -->
-                <label for="cantidad_ambientes">Cantidad de Ambientes:</label>
+                <label for="cantidad_ambientes">Cantidad de Ambientes:<span class="obligatorio">*</span></label>
                 <input type="number" id="cantidad_ambientes" name="cantidad_ambientes" required min="0" oninput="mostrarUsoAmbientes(this.value)">
 
                 <div id="contenedorUsoAmbientes"></div>
@@ -173,35 +174,35 @@
 
       
 
-                <label for="cantidad_camas">Cantidad de Camas:</label>
+                <label for="cantidad_camas">Cantidad de Camas:<span class="obligatorio">*</span></label>
                 <input type="number" id="cantidad_camas" name="cantidad_camas" required>
 
-                <label for="ventilacion">Ventilación</label>
+                <label for="ventilacion">Ventilación<span class="obligatorio">*</span></label>
                 <select id="ventilacion" name="ventilacion" required>
                     <option value="" disabled selected>Seleccione una opción</option>
                 </select>
 
-                <label for="iluminacion">Iluminación:</label>
+                <label for="iluminacion">Iluminación:<span class="obligatorio">*</span></label>
                 <select id="iluminacion" name="iluminacion" required>
                     <option value="" disabled selected>Seleccione una opción</option>
                 </select>
 
-                <label for="higiene">Higiene:</label>
+                <label for="higiene">Higiene:<span class="obligatorio">*</span></label>
                 <select id="higiene" name="higiene" required>
                     <option value="" disabled selected>Seleccione una opción</option>
                 </select>
 
-                <label for="orden">Orden:</label>
+                <label for="orden">Orden:<span class="obligatorio">*</span></label>
                 <select id="orden" name="orden" required>
                     <option value="" disabled selected>Seleccione una opción</option>
                 </select>
 
-                <label for="barreras_arquitectonicas">Barreras Arquitectónicas:</label>
+                <label for="barreras_arquitectonicas">Barreras Arquitectónicas:<span class="obligatorio">*</span></label>
                 <select id="barreras_arquitectonicas" name="barreras_arquitectonicas" required>
                     <option value="" disabled selected>Seleccione una opción</option>
                 </select>
 
-                <label for="existencia_sanitaria">Existencia Sanitaria:</label>
+                <label for="existencia_sanitaria">Existencia Sanitaria:<span class="obligatorio">*</span></label>
                 <select id="existencia_sanitaria" name="existencia_sanitaria" required>
                     <option value="" disabled selected>Seleccione una opción</option>
                     <option value="1">Si</option>
@@ -209,13 +210,13 @@
                 </select>
 
                 <label for="letrina">Letrina:</label>
-                <select id="letrina" name="letrina" required>
+                <select id="letrina" name="letrina">
                     <option value="" disabled selected>Seleccione una opción</option>
                     <option value="dentro">Dentro</option>
                     <option value="fuera">Fuera</option>
                 </select>
 
-                <label for="procedencia_agua">Procedencia del Agua:</label>
+                <label for="procedencia_agua">Procedencia del Agua:<span class="obligatorio">*</span></label>
                 <select id="procedencia_agua" name="procedencia_agua" required>
                     <option value="" disabled selected>Seleccione una opción</option>
                     <option value="pozo">Pozo</option>
@@ -225,7 +226,7 @@
                 </select>
 
                 <!-- CONFORT-->
-                <label for="numero_confort">Número de Elementos de Confort:</label>
+                <label for="numero_confort">Número de Elementos de Confort:<span class="obligatorio">*</span></label>
                 <input type="number" id="numero_confort" name="numero_confort" required min="0" oninput="mostrarElementosConfort(this.value)">
 
                 <div id="contenedorElementosConfort"></div>
@@ -247,7 +248,7 @@
             <div class="pagina" id="pagina3">
                 <h2>Salud</h2>
 
-                <label for="numero_discapacidades">Número de discapacidades:</label>
+                <label for="numero_discapacidades">Número de discapacidades:<span class="obligatorio">*</span></label>
                 <input type="number" id="numero_discapacidades" name="numero_discapacidades" required min="1" oninput="updateDiscapacidadInputs()">
 
                 <div id="discapacidad_inputs"></div>
@@ -256,14 +257,14 @@
                     echo "<script>const discapacidadesSeleccionadas = " . json_encode($discapacidades) . ";</script>";
                 ?>
 
-                <label for="cobertura">Cobertura:</label>
+                <label for="cobertura">Cobertura:<span class="obligatorio">*</span></label>
                 <select id="cobertura" name="cobertura" required>
                     <option value="" disabled selected>Seleccione una opción</option>
                     <option value="1">Si</option>
                     <option value="0">No</option>
                 </select>
 
-                <label for="cud">CUD:</label>
+                <label for="cud">CUD:<span class="obligatorio">*</span></label>
                 <select id="cud" name="cud" required>
                     <option value="" disabled selected>Seleccione una opción</option>
                     <option value="1">Si</option>
@@ -273,7 +274,7 @@
                 <label for="lugar_atencion">¿Dónde se atiende?</label>
                 <input type="text" id="lugar_atencion" name="lugar_atencion">
 
-                <label for="necesita_asistencia">¿Necesita asistencia?</label>
+                <label for="necesita_asistencia">¿Necesita asistencia?<span class="obligatorio">*</span></label>
                 <select id="necesita_asistencia" name="necesita_asistencia" required>
                     <option value="" disabled selected>Seleccione una opción</option>
                     <option value="1">Si</option>
@@ -283,7 +284,7 @@
                 <label for="quien_brinda_asistencia">¿Quién le brinda asistencia?</label>
                 <input type="text" id="quien_brinda_asistencia" name="quien_brinda_asistencia">
 
-                <label for="cobra_pension">¿Cobra pensión?</label>
+                <label for="cobra_pension">¿Cobra pensión?<span class="obligatorio">*</span></label>
                 <select id="cobra_pension" name="cobra_pension" required>
                     <option value="" disabled selected>Seleccione una opción</option>
                     <option value="1">Si</option>

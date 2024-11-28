@@ -14,18 +14,20 @@
     
 
     <div class="container_registro">
+        <p class="info-obligatorios">Los campos con <span class="obligatorio">*</span> son obligatorios.</p>
+
         
         <form class="form_registro" action="php/registro_discapacidad.php" method="post">
-            <label for="nombre">Nombre:</label>
+            <label for="nombre">Nombre:<span class="obligatorio">*</span></label>
             <input type="text" id="nombre" name="nombre" required>
 
-            <label for="apellido">Apellido:</label>
+            <label for="apellido">Apellido:<span class="obligatorio">*</span></label>
             <input type="text" id="apellido" name="apellido" required>
 
-            <label for="dni">DNI:</label>
+            <label for="dni">DNI:<span class="obligatorio">*</span></label>
             <input type="text" id="dni" name="dni" required>
 
-            <label>¿Hay una persona con discapacidad?</label>
+            <label>¿Hay una persona con discapacidad?<span class="obligatorio">*</span></label>
             <select id="persona_discapacidad" name="persona_discapacidad" required onchange="mostrarCampos()">
                 <option value="" disabled selected>Seleccione una opción</option>
                 <option value="No">No</option>
@@ -58,7 +60,7 @@
                 <!-- Campo que se muestra solo si selecciona 'Otros' -->
                 <input type="text" name="otros_parentesco" id="otros_parentesco" placeholder="Especificar parentesco" style="display:none;">
 
-                <label for="direccion">Dirección:</label>
+                <label for="direccion">Dirección:<span class="obligatorio">*</span></label>
                 <input type="text" id="direccion" name="direccion" required>
 
                 <label for="telefono">Teléfono/Celular:</label>
@@ -67,7 +69,7 @@
                 <label for="correo">Correo Electrónico:</label>
                 <input type="email" id="correo" name="correo">
 
-                <label>¿Tiene Certificado Único de Discapacidad (CUD)?</label>
+                <label>¿Tiene Certificado Único de Discapacidad (CUD)?<span class="obligatorio">*</span></label>
                 <select id="certificado_discapacidad" name="certificado_discapacidad" required>
                     <option value="" disabled selected>Seleccione una opción</option>
                     <option value="No">No</option>

@@ -427,6 +427,12 @@ body.scrolled #banner {
     align-items: center;
 }
 
+.navbar-logo a {
+    display: flex;           
+    align-items: center;    
+    text-decoration: none;  
+}
+
 .navbar-logo .logo {
     height: 60px;
     margin-right: 15px;
@@ -545,7 +551,7 @@ body.scrolled #banner {
     display: block;
     text-align: center;
     margin: 0;
-    
+    cursor: pointer;
 }
 
 .navbar-links .dropdown:last-child .dropdown-content {
@@ -738,6 +744,19 @@ body.scrolled #banner {
 }
 
 /* =============== REGISTRO =============== */
+.obligatorio {
+    color: #ff1900;
+    font-size: 1em;
+    margin-left: 5px;
+}
+
+/* Estilo para el texto informativo */
+.info-obligatorios {
+    font-size: 0.7em;
+    color: #464646;
+    margin-bottom: 5px;
+    font-style: italic;
+}
 
 .container_registro {
     max-width: 800px;
@@ -1998,14 +2017,17 @@ button.noselect:focus {
     font-size: 2rem;
     letter-spacing: 0.2rem;
     margin-bottom: 15px;
-    color: #663c94;
+    color: #522286;
     font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 
 .about_tittle{
     font-size: 5rem;
     letter-spacing: 0.2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    color:#0056b3;
 }
 
 
@@ -2557,6 +2579,10 @@ button.noselect:focus {
         display: none; /* Se oculta por defecto */
     }
 
+    .datos_tab{
+        display: none; 
+    }
+
 }
 
 
@@ -2648,6 +2674,8 @@ button.noselect:focus {
     .admin_delete{
         display: block;
     }
+
+    
 
 }
 
@@ -2939,4 +2967,31 @@ button.noselect:focus {
     .card p {
         font-size: 13px;
     }
+}
+
+@media screen and (orientation: landscape) and (max-width: 1050px) {
+    /* Cuando el dispositivo está en orientación horizontal (de costado) */
+    .mision {
+        margin-top: 150px;
+    }
+
+    .editorial {
+        content: '';
+        position: absolute;
+        bottom: -150px; 
+        left: 0;
+        width: 100%;
+        height: 100px;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .background {
+        height: 150vh;
+    }
+    
+    .background-texture {
+        height: 150vh;
+    }
+    
 }

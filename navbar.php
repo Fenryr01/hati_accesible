@@ -30,8 +30,10 @@ if ($requiredPermission && (!isset($_SESSION['permisos'][$requiredPermission]) |
         <div class="bubble2"></div>
         <div class="bubble2"></div>
         <div class="navbar-logo">
-            <img src="img/logo_accesibilidad_ok.png" alt="Logo" class="logo">
-            <span class="navbar-title">DIRECCIÓN DE ACCESIBILIDAD</span>
+            <a href="index.php">
+                <img src="img/logo_accesibilidad_ok.png" alt="Logo" class="logo">
+                <span class="navbar-title">DIRECCIÓN DE ACCESIBILIDAD</span>
+            </a>
         </div>
         <div class="navbar-links" id="navbar-links">
             <a href="index.php">Inicio</a>
@@ -65,20 +67,24 @@ if ($requiredPermission && (!isset($_SESSION['permisos'][$requiredPermission]) |
             <?php if (isset($_SESSION['permisos']['graficos']) && $_SESSION['permisos']['graficos']): ?>
                 <a href="graficos.php">Gráficos</a>
             <?php endif; ?>
+            
+            <div class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn" id="dropdownAccountBtn">Cuenta</a>
+                <div class="dropdown-content">
+                    <?php if (!isset($_SESSION['username'])): ?>
+                        <a id="loginBtn">Iniciar Sesión</a>
+                    <?php endif; ?>
+                    <?php if (isset($_SESSION['permisos']['roles']) && $_SESSION['permisos']['roles']): ?>
+                        <a href="cuentas.php">Usuarios</a>
+                    <?php endif; ?>
+                    <?php if (isset($_SESSION['username'])): ?>
+                        <a href="php/salir.php">Cerrar Sesión</a>
+                    <?php endif; ?>
+                </div>
+            </div>
 
             <a href="about.php">Contacto</a>
-
-            <?php if (isset($_SESSION['username'])): ?>
-                <div class="dropdown">
-                    <a href="javascript:void(0)" class="dropbtn" id="dropdownAccountBtn">Cuenta</a>
-                    <div class="dropdown-content">
-                        <?php if (isset($_SESSION['permisos']['roles']) && $_SESSION['permisos']['roles']): ?>
-                            <a href="cuentas.php">Usuarios</a>
-                        <?php endif; ?>
-                        <a href="php/salir.php">Cerrar Sesión</a>
-                    </div>
-                </div>
-            <?php endif; ?>
+            
         </div>
 
         <div class="navbar-toggle" id="navbar-toggle">

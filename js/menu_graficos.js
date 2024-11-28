@@ -241,13 +241,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     },
                     export: {
                         csv: {
-                        filename: grafico.titulo,
+                            filename: grafico.titulo,
                         },
                         svg: {
-                        filename: grafico.titulo,
+                            filename: grafico.titulo,
                         },
                         png: {
-                        filename: grafico.titulo,
+                            filename: grafico.titulo,
                         }
                     }
                 }
@@ -256,12 +256,18 @@ document.addEventListener("DOMContentLoaded", () => {
             labels: grafico.categories,
             dataLabels: {
                 style: {
-                  fontSize: '15px',
-                  fontWeight: 'bold',
+                    fontSize: '15px',
+                    fontWeight: 'bold',
                 },
-            }
+            },
+            colors: [
+                '#2980b9', '#1abc9c', '#e74c3c', '#9b59b6', '#f1c40f',
+                '#d41212', '#5d4037', '#29b6f6', '#34495E', '#2C3E50',
+                '#7F8C8D', '#BFC9CA', '#A52A2A', '#6C5B7B', '#9c640c',
+                '#6d4c41', '#5b2c6f', '#922b21', '#73c6b6', '#3498db'
+            ]
         };
-
+    
         const chartContainer = document.querySelector(`#${grafico.titulo.replace(/\s+/g, '-').toLowerCase()}`);
         if (chartContainer) {
             const chart = new ApexCharts(chartContainer, options);
