@@ -169,9 +169,6 @@
     </section>
 
 
-
-
-
     <div class="map">
         <h1 class="titulo_ubicacion">¿Dónde puedes encontrarnos?</h1>
     </div>
