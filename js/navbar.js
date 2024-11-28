@@ -45,7 +45,20 @@ hamburger.addEventListener('click', function() {
 // Función para manejar el clic en los botones de dropdown
 function setupDropdown(btnId) {
     const dropdownBtn = document.getElementById(btnId);
-    const dropdownContent = dropdownBtn.nextElementSibling; // Obtener el siguiente elemento que es .dropdown-content
+    
+    // Verificar si el botón existe
+    if (!dropdownBtn) {
+        console.error(`El botón con id '${btnId}' no existe en el DOM.`);
+        return; // Salir de la función si no existe
+    }
+
+    const dropdownContent = dropdownBtn.parentElement.querySelector('.dropdown-content');
+
+    // Verificar si el contenido del dropdown existe
+    if (!dropdownContent) {
+        console.error(`El contenido del dropdown para el botón con id '${btnId}' no existe.`);
+        return;
+    }
 
     // Manejar el clic en el botón de dropdown
     dropdownBtn.addEventListener('click', function(event) {
@@ -56,6 +69,18 @@ function setupDropdown(btnId) {
             dropdownContent.classList.toggle('show');
         }
     });
+
+    // Manejar clic en el botón con id 'loginBtn'
+    const loginBtn = document.getElementById('loginBtn');
+    if (loginBtn) {
+        loginBtn.addEventListener('click', function() {
+            navbarLinks.classList.toggle('active');
+            document.querySelector('.navbar').classList.toggle('responsive');
+        });
+    } else {
+        console.error("El botón con id 'loginBtn' no existe en el DOM.");
+    }
+    
 
     // Cerrar el dropdown si se hace clic fuera de él
     window.addEventListener('click', function() {
