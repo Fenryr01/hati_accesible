@@ -16,32 +16,6 @@
 </head>
 <body class="body_about">
 
-    <div id="overlay" class="overlay"></div>
-    <!-- Popup para editar la página home -->
-    <div class="popup-overlay_home" id="popup_edit_home" style="display: none;">
-        <div class="popup-content_home">
-            <div class="popup-header_home">
-                <h2 id="titulo-popup">Editar Noticia</h2>
-                <button class="close-btn_home" onclick="closePopup()">✖</button>
-            </div>
-            <div class="popup_form">
-                <form action="php/con_home.php" method="POST">
-                    <input type="hidden" id="id_noticia" name="id_noticia">
-                    <label for="titulo">Título:</label>
-                    <input type="text" id="titulo" name="titulo">
-
-                    <label for="descripcion">Descripción:</label>
-                    <textarea id="descripcion" name="descripcion"></textarea>
-
-                    <label for="imgurl">URL de la imagen:</label>
-                    <input type="text" id="imgurl" name="imgurl">
-
-                    <button class="button_edit_home" type="submit">Guardar Cambios</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <div class="background"></div>
         <div class="background-texture"></div>
         <header class="header_about">
@@ -106,25 +80,25 @@
     </svg>
     <section class="mision">
         <div class="mision-content">
-            <!-- Mostrar botón de edición solo si el usuario tiene permiso para editar noticias -->
+            <!-- Mostrar botón de edición solo si el usuario tiene permiso para ver noticias -->
             <?php if (isset($_SESSION['permisos']['noticias']) && $_SESSION['permisos']['noticias']): ?>
-                <button class="edit-btn"
-                    data-titulo="<?php echo htmlspecialchars($registro_id_5['titulo'], ENT_QUOTES, 'UTF-8'); ?>"
-                    data-descripcion="<?php echo htmlspecialchars($registro_id_5['descripcion'], ENT_QUOTES, 'UTF-8'); ?>"
-                    data-id="<?php echo $registro_id_5['id']; ?>">
+                <button class="edit-btn_1" onclick="openPopup('popup_edit_1')">
                     ✎
                 </button>
             <?php endif; ?>
-            
-            <!-- Mostrar título y descripción -->
-            <h1><?php echo htmlspecialchars($registro_id_5['titulo'], ENT_QUOTES, 'UTF-8'); ?></h1>
-            <p><?php echo htmlspecialchars($registro_id_5['descripcion'], ENT_QUOTES, 'UTF-8'); ?></p>
+            <h1><?php echo htmlspecialchars($titulo_id_5, ENT_QUOTES, 'UTF-8'); ?></h1>
+            <p><?php echo htmlspecialchars($descripcion_id_5, ENT_QUOTES, 'UTF-8'); ?></p>
         </div>
     </section>
 
 
     <section class="contacto">
         <div class="contacto-content">
+                <?php if (isset($_SESSION['permisos']['noticias']) && $_SESSION['permisos']['noticias']): ?>
+                    <button class="edit-btn_2" onclick="openPopup('popup_edit_2')">
+                        ✎
+                    </button>
+                <?php endif; ?>
             <div class="titulo_contacto">
                 <h1>Contáctanos</h1>
             </div>
@@ -136,7 +110,7 @@
                                 <i class="fas fa-envelope"></i>
                             </div>
                         </a>
-                        <p>example@dominio.com</p>
+                        <p><?php echo htmlspecialchars($titulo_id_6, ENT_QUOTES, 'UTF-8'); ?></p>
                     </li>
                     <li class="card instagram-card">
                         <a>
@@ -144,7 +118,7 @@
                                 <i class="fab fa-instagram"></i>
                             </div>
                         </a>
-                        <p>@Usuario Instagram</p>
+                        <p><?php echo htmlspecialchars($descripcion_id_6, ENT_QUOTES, 'UTF-8'); ?></p>
                     </li>
 
                     <li class="card phone-card">
@@ -153,7 +127,7 @@
                                 <i class="fas fa-phone"></i>
                             </div>
                         </a>
-                        <p>+1 234 567 89</p>
+                        <p><?php echo htmlspecialchars($titulo_id_7, ENT_QUOTES, 'UTF-8'); ?></p>
                     </li>
                     <li class="card address-card">
                         <a>
@@ -161,12 +135,14 @@
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                         </a>
-                        <p>Leandro N. Alem, B7100 Dolores, Buenos Aires</p>
+                        <p><?php echo htmlspecialchars($descripcion_id_7, ENT_QUOTES, 'UTF-8'); ?></p>
                     </li>
                 </ul>
+                
             </div>
         </div>
     </section>
+    
 
 
     <div class="map">
@@ -176,8 +152,12 @@
     <!-- Imagen en el lado izquierdo -->
         <div class="box box--left">
             <div class="box__inner">
-                <img src="https://dolores.gob.ar/wp-content/uploads/2019/03/TALLERES-JUVENTUD-800x400.jpg" 
-                    alt="Imagen de la puerta del lugar" />
+                <!-- Verifica que $imgurl_id_7 tenga un valor válido antes de mostrarlo -->
+                <?php if (isset($imgurl_id_7) && !empty($imgurl_id_7)): ?>
+                    <img src="<?php echo htmlspecialchars($imgurl_id_7, ENT_QUOTES, 'UTF-8'); ?>" alt="Imagen de la puerta del lugar">
+                <?php else: ?>
+                    <p>No hay imagen disponible.</p>
+                <?php endif; ?>
             </div>
         </div>
             <!-- Mapa en el lado derecho -->
@@ -189,6 +169,62 @@
     </div>
 
 
+
+    <!-- Overlay para ambos popups -->
+    <div id="overlay" class="overlay" onclick="closePopup()"></div>
+
+    <!-- Popup para editar la sección "Misión" -->
+    <div class="popup-overlay_home" id="popup_edit_1" style="display: none;">
+        <div class="popup-content_home">
+            <div class="popup-header_home">
+                <h2 id="titulo-popup">Editar introducción </h2>
+                <button class="close-btn_home" onclick="closePopup()">✖</button>
+            </div>
+            <div class="popup_form">
+                <form action="php/con_about.php" method="POST">
+                    <input type="hidden" id="id_noticia" name="id_noticia" value="mision">
+                    <label for="titulo">Título:</label>
+                    <input type="text" id="titulo" name="titulo" value="<?php echo htmlspecialchars($titulo_id_5, ENT_QUOTES, 'UTF-8'); ?>">
+
+                    <label for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" name="descripcion"><?php echo htmlspecialchars($descripcion_id_5, ENT_QUOTES, 'UTF-8'); ?></textarea>
+
+                    <button class="button_edit_home" type="submit">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup para editar la sección "Contacto" -->
+    <div class="popup-overlay_home" id="popup_edit_2" style="display: none;">
+        <div class="popup-content_home">
+            <div class="popup-header_home">
+                <h2 id="titulo-popup">Editar Contacto</h2>
+                <button class="close-btn_home" onclick="closePopup()">✖</button>
+            </div>
+            <div class="popup_form">
+                <form action="php/con_about.php" method="POST">
+                    <input type="hidden" id="id_noticia" name="id_noticia" value="contacto">
+                    <label for="titulo">Correo:</label>
+                    <input type="text" id="correo" name="correo" value="<?php echo htmlspecialchars($titulo_id_6, ENT_QUOTES, 'UTF-8'); ?>">
+
+                    <label for="titulo">instagram:</label>
+                    <input type="text" id="red1" name="instagram" value="<?php echo htmlspecialchars($descripcion_id_6, ENT_QUOTES, 'UTF-8'); ?>">
+                    
+                    <label for="titulo">Teléfono:</label>
+                    <input type="text" id="numero" name="telefono" value="<?php echo htmlspecialchars($titulo_id_7, ENT_QUOTES, 'UTF-8'); ?>">
+                    
+                    <label for="titulo">Dirección:</label>
+                    <input type="text" id="direccion" name="direccion" value="<?php echo htmlspecialchars($descripcion_id_7, ENT_QUOTES, 'UTF-8'); ?>">
+                    
+                    <label for="imgurl">URL de la imagen:</label>
+                    <input type="text" id="imgurl" name="imgurl"  value="<?php echo htmlspecialchars($imgurl_id_7, ENT_QUOTES, 'UTF-8'); ?>">
+
+                    <button class="button_edit_home" type="submit">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
     <?php include("footer.html"); ?>

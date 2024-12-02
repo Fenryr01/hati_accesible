@@ -166,7 +166,7 @@ body.scrolled #banner {
 }
 
 /* =============== EDIT BUTTONS =============== */
-.edit-btn {
+.edit-btn, .edit-btn_1{
     position: absolute;
     top: 10px;
     right: 10px;
@@ -185,9 +185,28 @@ body.scrolled #banner {
     transition: background-color 0.3s ease;
 }
 
-.edit-btn:hover {
+.edit-btn:hover, .edit-btn_1:hover, .edit-btn_2:hover  {
     background-color: rgba(30, 30, 30, 1); /* Fondo gris más oscuro al pasar el mouse */
 }
+
+.edit-btn_2 {
+    position: absolute;
+    right: 10px;
+    background-color: rgba(50, 50, 50, 0.8); /* Fondo gris oscuro */
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px; /* Bordes ligeramente redondeados */
+    padding: 8px;
+    cursor: pointer;
+    width: 40px; /* Cuadrado */
+    height: 40px; /* Cuadrado */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
 
 .overlay {
     position: fixed;
@@ -252,7 +271,7 @@ body.scrolled #banner {
 
 .popup_form textarea{
     width: 100%;
-    height: 10vw;
+    height: 15vw;
     max-height: 150px;
     padding: 12px;
     font-size: 1.1rem;
@@ -1908,7 +1927,7 @@ button.noselect:focus {
 
 }
 
-#titulo {
+#titulo, #correo, #red1, #numero, #direccion {
     text-align: center;
     margin: 0;
     font-size: 1.5em;
@@ -2218,11 +2237,11 @@ button.noselect:focus {
 }
 
 .card p {
-    font-size: 17px;
+    font-size: 20px;
     font-weight: bold;
     color: #000000;
     margin-top: 20px;
-    z-index: 1000;
+    z-index: 10;
     transition: color 0.3s ease-out;
 }
 
@@ -2242,7 +2261,7 @@ button.noselect:focus {
 }
 
 .circle i {
-    font-size: 45px;
+    font-size: 55px;
 }
 
 .card:hover .circle {
@@ -2310,7 +2329,21 @@ button.noselect:focus {
     grid-column: span 35 / -1;
 }
 
+#popup_edit_1 .popup_form textarea{
+    width: 100%;
+    height: 35vw;
+    max-height: 200px;
+    padding: 12px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    border: 1px solid #000000;
+    resize: none;
+}
 
+#popup_edit_2 .popup-content_home {
+    height: 100%;
+    overflow-y: auto;
+}
 
 /* =============== RESPONSIVE =============== */
 
@@ -2394,10 +2427,6 @@ button.noselect:focus {
     .noticia-texto {
         margin-left: 0;
         margin-top: 20px;
-    }
-
-    .popup_form form{
-        justify-content: flex-start;
     }
 
     .popup_form textarea{
@@ -2759,6 +2788,10 @@ button.noselect:focus {
         display: none; /* Oculta las columnas de DNI y Dirección en pantallas pequeñas */
     }
 
+
+    .nombre-apellido-wrapper {
+        text-align: center;
+    }
 }
 
 
@@ -2906,19 +2939,6 @@ button.noselect:focus {
         margin-bottom: 20px;
     }
 
-    .circle {
-        width: 80px;
-        height: 80px;
-    }
-
-    .circle i {
-        font-size: 30px;
-    }
-
-    .card p {
-        font-size: 14px;
-    }
-
     .map{
         font-size: 1rem;
     }
@@ -2948,6 +2968,10 @@ button.noselect:focus {
         object-fit: cover; 
     }
 
+    #popup_edit_2 .popup-content_home {
+        width: 100%;
+    }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -2955,18 +2979,10 @@ button.noselect:focus {
         width: 90%;
     }
 
-    .circle {
-        width: 70px;
-        height: 70px;
+    .titulo_contacto h1{
+        font-size: 2.5rem;
     }
 
-    .circle i {
-        font-size: 25px;
-    }
-
-    .card p {
-        font-size: 13px;
-    }
 }
 
 @media screen and (orientation: landscape) and (max-width: 1050px) {
