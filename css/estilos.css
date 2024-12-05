@@ -769,6 +769,12 @@ body.scrolled #banner {
     margin-left: 5px;
 }
 
+/* Estilo específico para la edad */
+input#edad:disabled {
+    background-color: #d4ddfa; 
+    font-weight: bold; 
+}
+
 /* Estilo para el texto informativo */
 .info-obligatorios {
     font-size: 0.7em;
@@ -784,6 +790,9 @@ body.scrolled #banner {
     font-weight: bold;
 }
 
+.container_registro h1{
+    font-size: 2.5em;
+}
 
 .form_registro {
     background-color: #ffffff;
@@ -891,6 +900,10 @@ body.scrolled #banner {
     display: block; 
 }
 
+.pagina h2 {
+    font-size: 2em;
+}
+
 .ant_sig1, .ant_sig2{
     background: linear-gradient(135deg, rgb(0, 73, 95),rgb(44, 84, 158));
     display: flex; 
@@ -953,6 +966,7 @@ body.scrolled #banner {
     font-style: italic;
     cursor: default;
 }
+
 
 /* =============== CUENTAS =============== */
 
@@ -1927,7 +1941,7 @@ button.noselect:focus {
 
 }
 
-#titulo, #correo, #red1, #numero, #direccion {
+#titulo, #correo1, #red1, #numero, #direccion1 {
     text-align: center;
     margin: 0;
     font-size: 1.5em;

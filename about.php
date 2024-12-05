@@ -206,7 +206,7 @@
                 <form action="php/con_about.php" method="POST">
                     <input type="hidden" id="id_noticia" name="id_noticia" value="contacto">
                     <label for="titulo">Correo:</label>
-                    <input type="text" id="correo" name="correo" value="<?php echo htmlspecialchars($titulo_id_6, ENT_QUOTES, 'UTF-8'); ?>">
+                    <input type="text" id="correo1" name="correo" value="<?php echo htmlspecialchars($titulo_id_6, ENT_QUOTES, 'UTF-8'); ?>">
 
                     <label for="titulo">instagram:</label>
                     <input type="text" id="red1" name="instagram" value="<?php echo htmlspecialchars($descripcion_id_6, ENT_QUOTES, 'UTF-8'); ?>">
@@ -215,7 +215,7 @@
                     <input type="text" id="numero" name="telefono" value="<?php echo htmlspecialchars($titulo_id_7, ENT_QUOTES, 'UTF-8'); ?>">
                     
                     <label for="titulo">Dirección:</label>
-                    <input type="text" id="direccion" name="direccion" value="<?php echo htmlspecialchars($descripcion_id_7, ENT_QUOTES, 'UTF-8'); ?>">
+                    <input type="text" id="direccion1" name="direccion" value="<?php echo htmlspecialchars($descripcion_id_7, ENT_QUOTES, 'UTF-8'); ?>">
                     
                     <label for="imgurl">URL de la imagen:</label>
                     <input type="text" id="imgurl" name="imgurl"  value="<?php echo htmlspecialchars($imgurl_id_7, ENT_QUOTES, 'UTF-8'); ?>">

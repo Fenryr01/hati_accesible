@@ -17,7 +17,7 @@ if ($resultado->num_rows > 0) {
         // Mostrar cada usuario en una fila de la tabla
         echo '<tr>';
         echo '<td data-label="Nombre"><input type="text" name="nombre[' . $id . ']" value="' . $nombre . '" disabled /></td>';
-        echo '<td data-label="Contraseña"><input type="text" name="password[' . $id . ']" class="password-input"  value="' . $password . '" disabled /></td>';
+        echo '<td data-label="Contraseña"><input type="text" name="password[' . $id . ']" class="password-input"  value="" disabled /></td>';
         echo '<td data-label="Editar">
             <label class="switch">
                 <input type="checkbox" name="editar[' . $id . ']" onclick="toggleEdit(this, ' . $id . ')" />

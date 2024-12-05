@@ -182,11 +182,13 @@ mysqli_close($conexion);
             <form class="form_registro" method="POST" action="">
                 <h1>Registro de <?php echo $apellido," " , $nombre; ?> </h1>
                 <div class="botones_row">
-                    <!-- Botón para eliminar el registro -->
-                    <button type="submit" name="eliminar_registro" class="btn-eliminar" onclick="return confirmarEliminacion('<?php echo $nombre; ?>', '<?php echo $apellido; ?>')">
-                        <i class="material-icons" style="font-size: 30px;">delete</i>
-                    </button>
-
+                    <?php if (isset($_SESSION['permisos']['eliminar']) && $_SESSION['permisos']['eliminar']): ?>
+                        <!-- Botón para eliminar el registro -->
+                        <button type="submit" name="eliminar_registro" class="btn-eliminar" onclick="return confirmarEliminacion('<?php echo $nombre; ?>', '<?php echo $apellido; ?>')">
+                            <i class="material-icons" style="font-size: 30px;">delete</i>
+                        </button>
+                    <?php endif; ?>
+                    
                     <!-- Campo Visitado -->
                     <div class="visitado_registro">
                         <p><strong>Visitado:</strong></p>
@@ -205,7 +207,15 @@ mysqli_close($conexion);
                 <input type="text" id="apellido" name="apellido" value="<?php echo $apellido; ?>" required>
 
                 <label for="dni">DNI:</label>
-                <input type="text" id="dni" name="dni" value="<?php echo $dni; ?>" required>
+                <input 
+                    type="text" 
+                    id="dni" 
+                    name="dni"
+                    value="<?php echo $dni; ?>"  
+                    required 
+                    pattern="^\d{7,9}$" 
+                    title="El DNI debe tener entre 7 y 9 números." 
+                >
 
                 <label for="direccion">Dirección:</label>
                 <input type="text" id="direccion" name="direccion" value="<?php echo $direccion; ?>">
@@ -214,7 +224,14 @@ mysqli_close($conexion);
                 <input type="text" id="telefono" name="telefono" value="<?php echo $telefono; ?>">
 
                 <label for="correo_electronico">Correo Electrónico:</label>
-                <input type="email" id="correo_electronico" name="correo_electronico" value="<?php echo $correo_electronico; ?>">
+                <input 
+                    type="email" 
+                    id="correo_electronico" 
+                    name="correo_electronico" 
+                    value="<?php echo $correo_electronico; ?>"
+                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" 
+                    title="Por favor, ingresa una dirección de correo válida."
+                >
 
                 <!-- Certificado de discapacidad -->
                 <label for="certificado_discapacidad">¿Tiene Certificado Único de Discapacidad (CUD)?</label>

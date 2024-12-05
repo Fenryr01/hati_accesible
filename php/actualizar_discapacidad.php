@@ -8,6 +8,7 @@ $apellido = $_POST['apellido'];
 $dni = $_POST['dni'];
 $nacimiento = $_POST['nacimiento'];
 $contacto = !empty($_POST['contacto']) ? $_POST['contacto'] : NULL;
+$telefono = !empty($_POST['telefono']) ? $_POST['telefono'] : NULL;
 $domicilio = $_POST['domicilio'];
 $zona_id = $_POST['zona'];
 $tipo_tenencia = $_POST['tipo_tenencia'];
@@ -39,7 +40,7 @@ $fecha_formulario = $_POST['fecha_formulario'];
 
 // Actualizar los datos en la tabla `personas`
 $sql_persona = "UPDATE personas SET 
-    nombre = ?, apellido = ?, dni = ?, nacimiento = ?, contacto = ?, domicilio = ?, zona = ?, 
+    nombre = ?, apellido = ?, dni = ?, nacimiento = ?, correo = ?, telefono = ?, domicilio = ?, zona = ?, 
     tipo_tenencia = ?, procedencia_agua = ?, cantidad_camas = ?, ventilacion = ?, iluminacion = ?, 
     higiene = ?, orden = ?, existencia_sanitaria = ?, letrina = ?, barreras_arquitectonicas = ?, 
     cobertura = ?, cud = ?, lugar_atencion = ?, necesita_asistencia = ?, quien_brinda_asistencia = ?, 
@@ -50,8 +51,8 @@ WHERE id = ?";
 
 // Preparar y ejecutar la actualización
 $stmt_persona = $conexion->prepare($sql_persona);
-$stmt_persona->bind_param("ssisssissiiiiiisiiisisissssiiiisi", 
-    $nombre, $apellido, $dni, $nacimiento, $contacto, $domicilio, $zona_id, $tipo_tenencia, $procedencia_agua, 
+$stmt_persona->bind_param("ssissssissiiiiiisiiisisissssiiiisi", 
+    $nombre, $apellido, $dni, $nacimiento, $contacto, $telefono, $domicilio, $zona_id, $tipo_tenencia, $procedencia_agua, 
     $cantidad_camas, $ventilacion, $iluminacion, $higiene, $orden, $existencia_sanitaria, $letrina, 
     $barreras_arquitectonicas, $cobertura, $cud, $lugar_atencion, $necesita_asistencia, 
     $quien_brinda_asistencia, $cobra_pension, $tipo_pension, $observacion_salud, $observacion_vivienda, 

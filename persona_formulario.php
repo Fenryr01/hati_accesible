@@ -10,7 +10,7 @@
     }
     
     // Inicializar variables para los datos
-    $nombre = $apellido = $dni = $nacimiento = $contacto = $domicilio = $zona = $tipo_tenencia = $procedencia_agua = $cantidad_camas = $ventilacion = $iluminacion = $higiene = $orden = $existencia_sanitaria = $letrina = $barreras_arquitectonicas = $cobertura = $cud = $lugar_atencion = $necesita_asistencia = $quien_brinda_asistencia = $cobra_pension = $observacion_salud = $observacion_vivienda = $observacion_datos_personales = $miembros_grupo_familiar = $cantidad_ambientes = $numero_confort = $numero_discapacidades = $tipo_pension = $fecha_formulario = "";
+    $nombre = $apellido = $dni = $nacimiento = $contacto = $telefono  = $domicilio = $zona = $tipo_tenencia = $procedencia_agua = $cantidad_camas = $ventilacion = $iluminacion = $higiene = $orden = $existencia_sanitaria = $letrina = $barreras_arquitectonicas = $cobertura = $cud = $lugar_atencion = $necesita_asistencia = $quien_brinda_asistencia = $cobra_pension = $observacion_salud = $observacion_vivienda = $observacion_datos_personales = $miembros_grupo_familiar = $cantidad_ambientes = $numero_confort = $numero_discapacidades = $tipo_pension = $fecha_formulario = "";
 
     // Verificar si se ha pasado un ID
     if (isset($_GET['id'])) {
@@ -24,7 +24,8 @@
             $apellido = htmlspecialchars($fila['apellido']);
             $dni = htmlspecialchars($fila['dni']);
             $nacimiento = htmlspecialchars($fila['nacimiento'] ?? '');
-            $contacto = htmlspecialchars($fila['contacto'] ?? '');
+            $contacto = htmlspecialchars($fila['correo'] ?? '');
+            $telefono = htmlspecialchars($fila['telefono'] ?? '');
             $domicilio = htmlspecialchars($fila['domicilio']);
             $zona = htmlspecialchars($fila['zona']);
             $tipo_tenencia = htmlspecialchars($fila['tipo_tenencia']);
@@ -162,7 +163,7 @@
         <span class="material-icons" style="font-size: 50px;">arrow_back</span>
     </a>
     <div class="container_registro">
-        
+    
         <p class="datos_tab">
             <span id="datos_personales">Datos Personales</span> /
             <span id="datos_vivienda">Datos Vivienda</span> /
@@ -173,12 +174,15 @@
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <h1>Registro de <?php echo $apellido," " , $nombre; ?> </h1>
                 <div class="botones_row">
-                    <!-- Botón para eliminar el registro -->
-                    <button type="submit" name="eliminar_registro" class="btn-eliminar" onclick="return confirmarEliminacion('<?php echo $nombre; ?>', '<?php echo $apellido; ?>')">
-                        <i class="material-icons" style="font-size: 30px;">delete</i>
-                    </button>
+                    <?php if (isset($_SESSION['permisos']['eliminar']) && $_SESSION['permisos']['eliminar']): ?>
+                        <!-- Botón para eliminar el registro -->
+                        <button type="submit" name="eliminar_registro" class="btn-eliminar" onclick="return confirmarEliminacion('<?php echo $nombre; ?>', '<?php echo $apellido; ?>')">
+                            <i class="material-icons" style="font-size: 30px;">delete</i>
+                        </button>
+                    <?php endif; ?>
                 </div>
 
+                
             <div class="pagina" id="pagina1">
                 <h2>Datos Personales</h2>
 
@@ -192,7 +196,15 @@
                 <input type="text" id="apellido" name="apellido" value="<?php echo $apellido; ?>" required>
 
                 <label for="dni">DNI:</label>
-                <input type="number" id="dni" name="dni" value="<?php echo $dni; ?>" required>
+                <input 
+                    type="text" 
+                    id="dni" 
+                    name="dni" 
+                    required 
+                    value="<?php echo $dni; ?>" 
+                    pattern="^\d{7,9}$" 
+                    title="El DNI debe tener entre 7 y 9 números." 
+                >
 
                 <label for="nacimiento">Fecha de Nacimiento:</label>
                 <input type="date" id="nacimiento" name="nacimiento" value="<?php echo $nacimiento; ?>" required>
@@ -200,8 +212,18 @@
                 <label for="edad">Edad:</label>
                 <input type="number" id="edad" name="edad" disabled>
 
-                <label for="contacto">Contacto:</label>
-                <input type="text" id="contacto" name="contacto" value="<?php echo $contacto; ?>">
+                <label for="contacto">Correo:</label>
+                <input 
+                    type="email" 
+                    id="contacto" 
+                    name="contacto" 
+                    value="<?php echo $contacto; ?>"
+                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" 
+                    title="Por favor, ingresa una dirección de correo válida."
+                >
+
+                <label for="telefono">Telefono:</label>
+                <input type="text" id="telefono" name="telefono" value="<?php echo $telefono; ?>">
 
                 <label for="domicilio">Domicilio:</label>
                 <input type="text" id="domicilio" name="domicilio" value="<?php echo $domicilio; ?>" required>

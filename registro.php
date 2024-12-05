@@ -25,7 +25,14 @@
             <input type="text" id="apellido" name="apellido" required>
 
             <label for="dni">DNI:<span class="obligatorio">*</span></label>
-            <input type="text" id="dni" name="dni" required>
+            <input 
+                type="text" 
+                id="dni" 
+                name="dni" 
+                required 
+                pattern="^\d{7,9}$" 
+                title="El DNI debe tener entre 7 y 9 números." 
+            >
 
             <label>¿Hay una persona con discapacidad?<span class="obligatorio">*</span></label>
             <select id="persona_discapacidad" name="persona_discapacidad" required onchange="mostrarCampos()">
@@ -67,7 +74,13 @@
                 <input type="text" id="telefono" name="telefono">
 
                 <label for="correo">Correo Electrónico:</label>
-                <input type="email" id="correo" name="correo">
+                <input 
+                    type="email" 
+                    id="correo" 
+                    name="correo" 
+                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" 
+                    title="Por favor, ingresa una dirección de correo válida."
+                >
 
                 <label>¿Tiene Certificado Único de Discapacidad (CUD)?<span class="obligatorio">*</span></label>
                 <select id="certificado_discapacidad" name="certificado_discapacidad" required>

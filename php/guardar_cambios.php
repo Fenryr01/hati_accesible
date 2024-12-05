@@ -30,7 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Actualizar la contraseña solo si no está vacía
         if (!empty($_POST['password'][$id]) && $_POST['password'][$id] !== '****') {
-            $password = $conexion->real_escape_string($_POST['password'][$id]);
+            // Hashear la contraseña antes de guardarla
+            $password = password_hash($_POST['password'][$id], PASSWORD_BCRYPT);
             $query = "UPDATE usuarios SET password='$password' WHERE id=$id";
             $conexion->query($query);
         }

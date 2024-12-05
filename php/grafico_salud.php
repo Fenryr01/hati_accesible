@@ -149,6 +149,70 @@ if ($result_asistencia_discapacidad) {
     ];
     }
 
+    // 4. Consulta: Tipos de discapacidad por zonas
+    $sql_discapacidad_zonas = "
+    SELECT 
+        z.zona AS nombre_zona,
+        qd.cual_discapacidad AS tipo_discapacidad,
+        COUNT(*) AS cantidad
+    FROM personas p
+    JOIN zonas z ON p.zona = z.id
+    JOIN discapacidades d ON p.id = d.persona_id
+    JOIN que_discapacidad qd ON d.tipo_discapacidad = qd.id
+    GROUP BY z.zona, qd.cual_discapacidad
+    ORDER BY z.zona, qd.cual_discapacidad;
+    ";
+
+    $result_discapacidad_zonas = $conexion->query($sql_discapacidad_zonas);
+
+    if ($result_discapacidad_zonas) {
+    $datos_zonas = [];
+    $categorias_zonas = [];
+    $series_zonas = [];
+
+    // Procesar resultados
+    while ($row = $result_discapacidad_zonas->fetch_assoc()) {
+        $zona = $row["nombre_zona"];
+        $tipo_discapacidad = $row["tipo_discapacidad"];
+        $cantidad = (int)$row["cantidad"];
+
+        if (!isset($datos_zonas[$tipo_discapacidad])) {
+            $datos_zonas[$tipo_discapacidad] = [];
+        }
+
+        $datos_zonas[$tipo_discapacidad][$zona] = $cantidad;
+
+        if (!in_array($zona, $categorias_zonas)) {
+            $categorias_zonas[] = $zona;
+        }
+    }
+
+    // Reorganizar datos para el gráfico
+    foreach ($datos_zonas as $tipo_discapacidad => $data) {
+        $serie = [
+            "name" => $tipo_discapacidad,
+            "data" => []
+        ];
+
+        // Asegurarse de que todas las zonas estén presentes
+        foreach ($categorias_zonas as $zona) {
+            $serie["data"][] = $data[$zona] ?? 0; // Si no hay datos para la zona, usar 0
+        }
+
+        $series_zonas[] = $serie;
+    }
+
+    $graficos[] = [
+        "titulo" => "Tipos de discapacidad por zonas",
+        "series" => $series_zonas,
+        "categories" => $categorias_zonas
+    ];
+    } else {
+    $graficos[] = ["error" => "Error al obtener datos de discapacidad por zonas"];
+    }
+
+
+
 
 } else {
     // En caso de error en la consulta

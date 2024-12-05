@@ -58,31 +58,37 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const renderGraficosConTitulos = (grafico, data) => {
-        // Limpiar contenido previo
-        mainContent.innerHTML = "";
+    // Limpiar contenido previo
+    mainContent.innerHTML = "";
 
-        // Itera sobre cada gráfico y lo renderiza
-        data.forEach(graf => {
-            const section = document.createElement("section");
-            const sanitizedTitle = graf.titulo.replace(/\s+/g, '-').toLowerCase(); // Sanitiza el título para usarlo en el id
-            section.innerHTML = `
-                <h1 id="titulo">${graf.titulo}</h1>
-                <div id="${sanitizedTitle}" class="grafico-container" style="width: 100%;"></div>
-            `;
-            mainContent.appendChild(section);
+    // Lista de palabras clave para gráficos de barras agrupadas
+    const palabrasClaveBarrasAgrupadas = [
+        "de niveles por categoría",
+        "discapacidad por rango de edades",
+        "discapacidad por zonas"
+    ];
 
-            // Decidir qué tipo de gráfico crear en función del título
-            if (graf.titulo.toLowerCase().includes("zona")) {
-                crearGraficoTorta(graf);
-            } else if (graf.titulo.toLowerCase().includes("de niveles por categoría")) {
-                crearGraficoBarrasAgrupadas(graf);
-            } else if (graf.titulo.toLowerCase().includes("discapacidad por rango de edades")) {
-                crearGraficoBarrasAgrupadas(graf);
-            } else {
-                crearGraficoBarra(graf);
-            }
-        });
-    };
+    data.forEach(graf => {
+        const section = document.createElement("section");
+        const sanitizedTitle = graf.titulo.replace(/\s+/g, '-').toLowerCase(); // Sanitiza el título para usarlo en el id
+        section.innerHTML = `
+            <h1 id="titulo">${graf.titulo}</h1>
+            <div id="${sanitizedTitle}" class="grafico-container" style="width: 100%;"></div>
+        `;
+        mainContent.appendChild(section);
+
+        // Lógica de decisión mejorada
+        const tituloNormalizado = graf.titulo.toLowerCase();
+        if (palabrasClaveBarrasAgrupadas.some(keyword => tituloNormalizado.includes(keyword))) {
+            crearGraficoBarrasAgrupadas(graf);
+        } else if (tituloNormalizado.includes("zona")) {
+            crearGraficoTorta(graf);
+        } else {
+            crearGraficoBarra(graf);
+        }
+    });
+};
+
 
     const crearGraficoBarra = (grafico) => {
         // Función para dividir "Trastorno del procesamiento sensorial"

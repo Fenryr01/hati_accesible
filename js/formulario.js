@@ -49,12 +49,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     <label>Escolaridad<span class="obligatorio">*</span></label>
                     <select name="escolaridad_${i}" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
                         <option value="1" ${escolaridad === '1' ? 'selected' : ''}>Si</option>
                         <option value="0" ${escolaridad === '0' ? 'selected' : ''}>No</option>
                     </select><br>
 
                     <label>¿Tiene trabajo?<span class="obligatorio">*</span></label>
                     <select name="trabajo_${i}" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
                         <option value="1" ${trabajo === '1' ? 'selected' : ''}>Si</option>
                         <option value="0" ${trabajo === '0' ? 'selected' : ''}>No</option>
                     </select><br>
@@ -355,28 +357,31 @@ document.addEventListener('DOMContentLoaded', mostrarValores);
 
 
 function validarFormulario(pagina) {
-    const inputsRequeridos = document.querySelectorAll(`#pagina${pagina} [required]`);
-    let todosCompletos = true;
+    const inputs = document.querySelectorAll(`#pagina${pagina} input`);
+    let formularioValido = true;
 
-    for (let input of inputsRequeridos) {
-        if (!input.value.trim()) { // Asegurarse de que no esté vacío y que no sean solo espacios
-            todosCompletos = false;
+    for (let input of inputs) {
+        if (input.value.trim()) {
+            // Validar solo si el campo no está vacío
+            if (!input.checkValidity()) {
+                formularioValido = false;
+                input.reportValidity(); // Muestra el mensaje de error asociado al campo
+                break; // Detén el ciclo en el primer error encontrado
+            } else {
+                input.setCustomValidity(''); // Limpia mensajes de error personalizados
+            }
+        } else if (input.hasAttribute('required') && !input.value.trim()) {
+            // Validar los campos requeridos específicamente
+            formularioValido = false;
             input.setCustomValidity('Este campo es requerido.');
-        } else {
-            input.setCustomValidity('');
+            input.reportValidity();
+            break;
         }
     }
 
-    // Validar el formulario
-    if (!todosCompletos) {
-        inputsRequeridos.forEach(input => {
-            input.reportValidity(); 
-        });
-        return false; 
-    }
-
-    return true; 
+    return formularioValido; // Solo pasa a la siguiente página si todos los campos son válidos
 }
+
 
 
 function cambiarPagina(nuevaPagina) {
@@ -385,9 +390,9 @@ function cambiarPagina(nuevaPagina) {
     const numeroPaginaActual = parseInt(paginaActual.id.replace('pagina', ''));
 
     // Si vamos a una página siguiente, validamos los campos requeridos
-    //if (nuevaPagina > numeroPaginaActual && !validarFormulario(numeroPaginaActual)) {
-    //    return;  // Si la validación falla, detenemos el cambio de página
-    //}
+    if (nuevaPagina > numeroPaginaActual && !validarFormulario(numeroPaginaActual)) {
+       return;  // Si la validación falla, detenemos el cambio de página
+    }
 
     // Ocultamos la página actual
     paginaActual.style.display = 'none';

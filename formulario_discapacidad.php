@@ -41,7 +41,14 @@
                 <input type="text" id="apellido" name="apellido" required>
 
                 <label for="dni">DNI:<span class="obligatorio">*</span></label>
-                <input type="number" id="dni" name="dni" required>
+                <input 
+                    type="text" 
+                    id="dni" 
+                    name="dni" 
+                    required 
+                    pattern="^\d{7,9}$" 
+                    title="El DNI debe tener entre 7 y 9 números." 
+                >
 
                 <label for="nacimiento">Fecha de Nacimiento:<span class="obligatorio">*</span></label>
                 <input type="date" id="nacimiento" name="nacimiento" required>
@@ -49,8 +56,17 @@
                 <label for="edad">Edad:</label>
                 <input type="number" id="edad" name="edad" disabled>
 
-                <label for="contacto">Contacto:<span class="obligatorio">*</span></label>
-                <input type="text" id="contacto" name="contacto">
+                <label for="contacto">Correo:</label>
+                <input 
+                    type="email" 
+                    id="contacto" 
+                    name="contacto" 
+                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" 
+                    title="Por favor, ingresa una dirección de correo válida."
+                >
+
+                <label for="telefono">Telefono:</label>
+                <input type="text" id="telefono" name="telefono">
 
                 <label for="domicilio">Domicilio:<span class="obligatorio">*</span></label>
                 <input type="text" id="domicilio" name="domicilio" required>

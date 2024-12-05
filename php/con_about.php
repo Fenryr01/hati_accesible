@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
     $instagram = isset($_POST['instagram']) ? $_POST['instagram'] : '';
     $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : '';
-    $direccion = isset($_POST['direccion']) ? $_POST['direccion'] : '';
+    $direccion = isset($_POST['direccion1']) ? $_POST['direccion1'] : '';
     $imgurl = isset($_POST['imgurl']) ? $_POST['imgurl'] : '';
 
     // Realizar las actualizaciones dependiendo del id_noticia
