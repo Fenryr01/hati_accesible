@@ -17,11 +17,11 @@ include("navbar.php");
 </head>
 <body>
     <section class="graficos_body">
+        <div class="black-bar"></div>
         <div class="content-menu">
             <li data-grafico="general"><span class="material-icons icon-general">person</span><h4 class="text1">Persona</h4></li>
             <li data-grafico="salud"><span class="material-icons icon-salud">favorite</span><h4 class="text2">Salud</h4></li>
             <li data-grafico="vivienda"><span class="material-icons icon-vivienda">house</span><h4 class="text3">Vivienda</h4></li>
-            <li data-grafico="todos"><span class="material-icons icon-todos">dashboard</span><h4 class="text4">Todos</h4></li>
         </div>
 
         <main class="graficos_contenedor">

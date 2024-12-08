@@ -27,7 +27,7 @@
             <span id="datos_vivienda">Datos Vivienda</span> /
             <span id="datos_salud">Datos Salud</span>
         </p>
-        <form class="form_registro" action="php/insertar_discapacidad.php" method="post" onsubmit="return validarFormulario()">
+        <form id="miFormulario" class="form_registro" action="php/insertar_discapacidad.php" method="post" onsubmit="return validarFormulario()">
             <div class="pagina" id="pagina1">
                 <h2>Datos Personales</h2>
 

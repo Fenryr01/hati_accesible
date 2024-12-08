@@ -48,6 +48,7 @@ h2{
     justify-content: center; /* Centra horizontalmente el contenido */
     text-align: center;
     color: white; /* Color de texto */
+    padding-top: 120px;
 }
 
 /* Efecto de desenfoque al hacer scroll */
@@ -386,14 +387,17 @@ body.scrolled #banner {
     flex-direction: row-reverse; /* Imagen a la derecha */
 }
 
-.noticia-img img {
+.noticia-img {
     width: 250px;
-    height: auto;
+    height: 250px; 
     border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    overflow: hidden; 
+}
+
+.noticia-img img {
+    width: 100%;  
+    height: 100%; 
+    object-fit: cover; 
 }
 
 .noticia-texto {
@@ -599,11 +603,22 @@ body.scrolled #banner {
 
 .footer-content {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between; 
+    flex-wrap: wrap; 
+    gap: 250px;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    text-align: center;
     
+}
+
+.footer-content section {
+    flex: 1;
+    min-width: 250px; 
+}
+
+#correo_diego{
+    text-transform: lowercase;
 }
 
 .footer-section {
@@ -611,11 +626,13 @@ body.scrolled #banner {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    text-align: center;
     gap: 1.5rem;
 }
 
+
 .footer-section a {
-    color: #002761;
+    color: #10006e;
     text-decoration: none;
     font-size: 1rem;
     font-style: italic;
@@ -634,13 +651,14 @@ body.scrolled #banner {
 .titulo {
     font-weight: bold;
     font-size: 1rem;
-    color: #002761c7;
+    color: #00183dc7;
 }
 
 .copyright {
     font-weight: bold;
     font-size: 0.9rem;
-    color: #002761;
+    color: #001b42;
+    white-space: nowrap;
 }
 
 .bubble {
@@ -1826,10 +1844,20 @@ button.noselect:focus {
 }
 
 /* =============== MENU GRAFICOS =============== */
-
+.black-bar{
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100px; 
+    height: 100vh; 
+    background: #161616;
+    padding-top: 125px; 
+    z-index: 1; 
+    transition: all 300ms;
+}
 
 .content-menu{
-    position: fixed; 
+    position: absolute; 
     top: 0; 
     left: 0; 
     width: 100px; 
@@ -1970,6 +1998,20 @@ button.noselect:focus {
 }
 
 /* =============== ABOUT =============== */
+.mensaje-copiado {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+    z-index: 99990;
+    pointer-events: none;
+}
+
+
 .body_about {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
@@ -2422,7 +2464,12 @@ button.noselect:focus {
     }
     
     .banner-content { 
+        margin-top: 150px;
         padding: 20px 0px;
+    }
+
+    #noticias{
+        padding-top: 120px;
     }
 
     .noticia-item {
@@ -2488,8 +2535,8 @@ button.noselect:focus {
         backdrop-filter: blur(20px); 
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         transition: max-height 0.5s ease;
-        max-height: 100vh; 
-        overflow-y: auto;
+        max-height: 80vh; 
+        overflow-y:scroll;
     }
 
     .navbar-links a {
@@ -2580,6 +2627,13 @@ button.noselect:focus {
     }
 }
 /* =============== FOOTER  =============== */
+@media (max-width: 1000px) {
+    .footer-content {
+        gap: 1rem;
+    }
+
+}
+
 @media (max-width: 768px) {
     .footer-content {
         flex-direction: column;
@@ -2595,6 +2649,14 @@ button.noselect:focus {
         width: 250px;
 
     }
+}
+
+@media (max-width: 450px) {
+    .footer-section {
+        flex-direction: column;
+        gap: 0px;
+    }
+
 }
 
 /* =============== REGISTRO  =============== */
@@ -2630,7 +2692,7 @@ button.noselect:focus {
 
 
 /* =============== CUENTAS  =============== */
-@media (max-width: 600px) {
+@media (max-width: 880px) {
     table {
         width: 100%;
         border-collapse: collapse;
@@ -2870,9 +2932,20 @@ button.noselect:focus {
         height: 50px;
         padding-bottom: 50px;
     }  
+
     
 }
+/*
+@media (orientation: landscape) and (max-width: 1000px) {
+    .content-menu { 
+        padding-top: 80px;
+    }
 
+    .content-menu li {
+        margin-bottom: 0px; 
+    }
+}
+*/
 /* =============== ABOUT  =============== */
 
 @media (max-width: 1400px) {

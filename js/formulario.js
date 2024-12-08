@@ -159,7 +159,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
 async function mostrarZonas() {
     const selectZonas = document.getElementById('zona');
     
@@ -357,25 +356,27 @@ document.addEventListener('DOMContentLoaded', mostrarValores);
 
 
 function validarFormulario(pagina) {
-    const inputs = document.querySelectorAll(`#pagina${pagina} input`);
+    // Selecciona todos los inputs y selects en la página específica
+    const elementos = document.querySelectorAll(`#pagina${pagina} input, #pagina${pagina} select`);
     let formularioValido = true;
 
-    for (let input of inputs) {
-        if (input.value.trim()) {
-            // Validar solo si el campo no está vacío
-            if (!input.checkValidity()) {
+    for (let elemento of elementos) {
+        // Limpia cualquier mensaje previo de error personalizado
+        elemento.setCustomValidity('');
+
+        if (!elemento.value.trim()) {
+            // Si el campo es requerido y está vacío
+            if (elemento.hasAttribute('required')) {
                 formularioValido = false;
-                input.reportValidity(); // Muestra el mensaje de error asociado al campo
+                elemento.setCustomValidity('Este campo es requerido.');
+                elemento.reportValidity();
                 break; // Detén el ciclo en el primer error encontrado
-            } else {
-                input.setCustomValidity(''); // Limpia mensajes de error personalizados
             }
-        } else if (input.hasAttribute('required') && !input.value.trim()) {
-            // Validar los campos requeridos específicamente
+        } else if (!elemento.checkValidity()) {
+            // Si el campo tiene un valor pero no pasa las validaciones del navegador
             formularioValido = false;
-            input.setCustomValidity('Este campo es requerido.');
-            input.reportValidity();
-            break;
+            elemento.reportValidity();
+            break; // Detén el ciclo en el primer error encontrado
         }
     }
 

@@ -17,6 +17,38 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentOrderColumn = 'apellido';
     let currentOrderDirection = 'asc';
 
+    function asignarEventosCheckboxes() {
+        document.querySelectorAll('.visitado-checkbox').forEach(checkbox => {
+            console.log("Checkbox encontrado:", checkbox); // Verifica si se encuentran los checkboxes
+    
+            checkbox.addEventListener('change', function () {
+                const id = this.dataset.id;
+                const visitado = this.checked ? 1 : 0;
+    
+                console.log(`ID: ${id}, Visitado: ${visitado}`); // Verifica los valores enviados
+    
+                fetch('php/actualizar_visitado.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ id, visitado })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log('Actualización exitosa');
+                        } else {
+                            console.error('Error en la actualización:', data.message);
+                            alert('Hubo un error al actualizar el estado de visitado.');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+    }
+    
+
     // Función para buscar datos
     function buscarDatos(page = 1) {
         const searchValue = searchInput.value.trim();
@@ -40,6 +72,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     // Habilitar/Deshabilitar botones de paginación
                     prevPageBtn.disabled = (currentPage === 1);
                     nextPageBtn.disabled = (currentPage >= totalPages);
+
+                    // Asignar eventos a los checkboxes después de que la tabla se actualice
+                    asignarEventosCheckboxes();
                 }
             } else {
                 console.error("Error en la solicitud:", xhr.statusText);
@@ -124,4 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Inicializar búsqueda al cargar la página
     buscarDatos();
+
+    
+    
 });

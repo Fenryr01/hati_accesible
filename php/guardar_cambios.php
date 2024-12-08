@@ -9,13 +9,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Escapar el ID para evitar inyecciones SQL
             $id_usuario = $conexion->real_escape_string($id_usuario);
             
-            // Eliminar permisos asociados
-            $query_eliminar_permisos = "DELETE FROM permisos WHERE id IN (SELECT permisos_id FROM usuarios WHERE id = $id_usuario)";
-            $conexion->query($query_eliminar_permisos);
-            
             // Eliminar usuario
             $query_eliminar_usuario = "DELETE FROM usuarios WHERE id = $id_usuario";
             $conexion->query($query_eliminar_usuario);
+
+            // Eliminar permisos asociados
+            $query_eliminar_permisos = "DELETE FROM permisos WHERE id IN (SELECT permisos_id FROM usuarios WHERE id = $id_usuario)";
+            $conexion->query($query_eliminar_permisos);
         }
     }
 

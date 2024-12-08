@@ -10,8 +10,7 @@ include("db.php");
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Obtener los datos del formulario
     $nombre = $_POST['nombre'];
-    $password = $_POST['password'];
-    //$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $permisos = isset($_POST['permisos']) ? $_POST['permisos'] : [];
 
     // Validar que el nombre no esté vacío

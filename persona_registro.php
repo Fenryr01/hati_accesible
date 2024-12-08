@@ -199,6 +199,7 @@ mysqli_close($conexion);
                         </label>
                     </div>
                 </div>
+
                 <!-- Campos de datos del formulario -->
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" value="<?php echo $nombre; ?>" required>

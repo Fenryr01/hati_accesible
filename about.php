@@ -104,7 +104,7 @@
             </div>
             <div class="contacto-info">
                 <ul>
-                    <li class="card email-card">
+                <li class="card email-card" onclick="copiarAlPortapapeles('<?php echo htmlspecialchars($titulo_id_6, ENT_QUOTES, 'UTF-8'); ?>', event)">
                         <a>
                             <div class="circle">
                                 <i class="fas fa-envelope"></i>
@@ -112,7 +112,7 @@
                         </a>
                         <p><?php echo htmlspecialchars($titulo_id_6, ENT_QUOTES, 'UTF-8'); ?></p>
                     </li>
-                    <li class="card instagram-card">
+                    <li class="card instagram-card" onclick="copiarAlPortapapeles('<?php echo htmlspecialchars($descripcion_id_6, ENT_QUOTES, 'UTF-8'); ?>', event)">
                         <a>
                             <div class="circle">
                                 <i class="fab fa-instagram"></i>
@@ -121,7 +121,7 @@
                         <p><?php echo htmlspecialchars($descripcion_id_6, ENT_QUOTES, 'UTF-8'); ?></p>
                     </li>
 
-                    <li class="card phone-card">
+                    <li class="card phone-card" onclick="copiarAlPortapapeles('<?php echo htmlspecialchars($titulo_id_7, ENT_QUOTES, 'UTF-8'); ?>', event)">
                         <a>
                             <div class="circle">
                                 <i class="fas fa-phone"></i>
@@ -129,7 +129,7 @@
                         </a>
                         <p><?php echo htmlspecialchars($titulo_id_7, ENT_QUOTES, 'UTF-8'); ?></p>
                     </li>
-                    <li class="card address-card">
+                    <li class="card address-card" onclick="copiarAlPortapapeles('<?php echo htmlspecialchars($descripcion_id_7, ENT_QUOTES, 'UTF-8'); ?>', event)">
                         <a>
                             <div class="circle">
                                 <i class="fas fa-map-marker-alt"></i>
