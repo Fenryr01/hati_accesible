@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const tituloNormalizado = graf.titulo.toLowerCase();
         if (palabrasClaveBarrasAgrupadas.some(keyword => tituloNormalizado.includes(keyword))) {
             crearGraficoBarrasAgrupadas(graf);
-        } else if (tituloNormalizado.includes("zona")) {
+        } else if (graf.tipo === "torta"){
             crearGraficoTorta(graf);
         } else {
             crearGraficoBarra(graf);

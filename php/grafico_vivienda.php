@@ -41,8 +41,17 @@ $sql_cantidades = "
     GROUP BY barreras_arquitectonicas
 ";
 
+// Consulta para obtener el porcentaje de personas según procedencia de agua
+$sql_procedencia_agua = "
+    SELECT procedencia_agua, COUNT(*) AS cantidad
+    FROM personas
+    GROUP BY procedencia_agua
+";
+
 $result_promedios = $conexion->query($sql_promedios);
 $result_cantidades = $conexion->query($sql_cantidades);
+$result_procedencia_agua = $conexion->query($sql_procedencia_agua);
+
 
 if ($result_promedios && $result_cantidades) {
     $promedios = [];
@@ -97,6 +106,15 @@ if ($result_promedios && $result_cantidades) {
         }
     }
 
+    // Creacion procedencia de agua
+    $data_procedencia_agua = [];
+    $categorias_procedencia_agua = [];
+    while ($row = $result_procedencia_agua->fetch_assoc()) {
+        $categorias_procedencia_agua[] = $row["procedencia_agua"];
+        $data_procedencia_agua[] = (int)$row["cantidad"];
+    }
+
+
     // Crear gráfico 1: Promedio de condiciones de vida
     $graficos[] = [
         "titulo" => "Puntuación promedio de condiciones de vida",
@@ -109,6 +127,14 @@ if ($result_promedios && $result_cantidades) {
         "titulo" => "Distribución de niveles por categoría",
         "series" => $niveles_data, // Pasar las series (niveles 1-5) al JS
         "categories" => $categorias
+    ];
+
+    // Crear gráfico 3: Porcentaje de personas según procedencia de agua
+    $graficos[] = [
+        "titulo" => "Porcentaje de personas según procedencia de agua",
+        "data" => $data_procedencia_agua,
+        "categories" => $categorias_procedencia_agua,
+        "tipo" => "torta"
     ];
 
     // Devolver los datos en formato JSON
