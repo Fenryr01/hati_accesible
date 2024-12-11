@@ -11,20 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estilos.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="manifest" href="/manifest.json">
 
     <title>Dirección de Accesibilidad</title>
 </head>
 
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js').then((registration) => {
-      console.log('Service Worker registrado con éxito:', registration);
-    }).catch((error) => {
-      console.error('Error al registrar el Service Worker:', error);
-    });
-  }
-</script>
+
 <body>
 
     <div id="overlay" class="overlay"></div>
