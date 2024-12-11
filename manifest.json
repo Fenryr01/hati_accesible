@@ -1,18 +1,17 @@
 {
-    "name": "Dirección de Accesibilidad",
-    "short_name": "DA",
-    "description": "Una aplicacion para accesibilidad",
-    "start_url": ".",
-    "display": "minimal-ui",
-    "background_color": "#F5F5F8",
-    "theme_color": "#F5F5F8",
-    "orientation": "portrait",
-    "icons": [
+  "name": "Dirección de Accesibilidad",
+  "short_name": "DA",
+  "description": "Una aplicacion para accesibilidad",
+  "start_url": ".",
+  "display": "minimal-ui",
+  "background_color": "#F5F5F8",
+  "theme_color": "#F5F5F8",
+  "orientation": "portrait",
+  "icons": [
       {
-        "src": "img/logo_accesibilidad_ok.png",
-        "sizes": "192x192",
-        "type": "image/png"
+          "src": "img/logo_accesibilidad_ok.png",
+          "sizes": "192x192",
+          "type": "image/png"
       }
-    ]
-  }
-  
+  ]
+}
