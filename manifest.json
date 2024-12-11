@@ -2,7 +2,7 @@
   "name": "Dirección de Accesibilidad",
   "short_name": "DA",
   "description": "Una aplicacion para accesibilidad",
-  "start_url": "https://hati-accesible.onrender.com/",
+  "start_url": "/",
   "display": "minimal-ui",
   "background_color": "#F5F5F8",
   "theme_color": "#F5F5F8",
