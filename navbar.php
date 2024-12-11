@@ -20,7 +20,7 @@ if ($requiredPermission && (!isset($_SESSION['permisos'][$requiredPermission]) |
 <html lang="es">
 <head>
     <link rel="icon" type="image/png" href="img/logo_accesibilidad_ok.png">
-    
+    <link rel="manifest" href="/manifest.json">
 </head>
 <body>
 <header>
