@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estilos.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Registro</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
         <p class="info-obligatorios">Los campos con <span class="obligatorio">*</span> son obligatorios.</p>
 
         
-        <form class="form_registro" action="php/registro_discapacidad.php" method="post">
+        <form id="form_registro" class="form_registro" action="php/registro_discapacidad.php" method="post">
             <label for="nombre">Nombre:<span class="obligatorio">*</span></label>
             <input type="text" id="nombre" name="nombre" required>
 
@@ -95,6 +95,7 @@
     </div>
 
     <?php include("footer.html"); ?>
+    <script src="js/envio_registo.js"></script>
     <script src="js/registro.js"></script>
     <script src="js/navbar.js"></script>
     <script src="js/footer.js"></script>

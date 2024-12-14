@@ -1,4 +1,5 @@
 <?php
+
 include("db.php"); // Asegúrate de tener tu archivo de conexión a la base de datos
 
 // Función para sanitizar entradas
@@ -64,22 +65,16 @@ if ($count > 0) {
         $stmt = $conexion->prepare($sql);
         $stmt->bind_param("ssssssss", $nombre, $apellido, $dni, $direccion, $telefono, $correo, $certificado_discapacidad, $quienes);
         
-        // Ejecutar la consulta
         if ($stmt->execute()) {
-            // Mensaje de éxito y redirección
-            echo "<script>
-                    alert('Gracias por registrarse.');
-                    window.location.href = '../index.php';
-                  </script>";
+            $response['success'] = true;
+            $response['message'] = 'Tu registro ha sido exitoso.';
         } else {
-            echo "Error al guardar el registro: " . $stmt->error;
+            $response['success'] = false;
+            $response['message'] = 'Error al guardar el registro: ' . $stmt->error;
         }
     } else {
-        // Si no hay persona con discapacidad, solo mostramos el mensaje de agradecimiento
-        echo "<script>
-                alert('Gracias por registrarse.');
-                window.location.href = '../index.php';
-              </script>";
+        $response['success'] = true;
+        $response['message'] = 'Tu registro ha sido exitoso.';
     }
 }
 
@@ -90,4 +85,7 @@ if (isset($stmt)) {
 
 // Cerrar la conexión
 $conexion->close();
+
+// Devolver la respuesta como JSON
+echo json_encode($response);
 ?>
