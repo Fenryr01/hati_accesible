@@ -8,7 +8,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/estilos.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -57,27 +57,28 @@
     </header>
 
 
-    <!-- Noticias -->
-    <svg class="editorial"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 24 150 28"
-            preserveAspectRatio="none">
-        <defs>
-            <path id="gentle-wave"
-            d="M-160 44c30 0 
-                58-18 88-18s
-                58 18 88 18 
-                58-18 88-18 
-                58 18 88 18
-                v44h-352z" />
-        </defs>
-        <g class="parallax">
-            <use xlink:href="#gentle-wave" x="50" y="0" fill="#e7e7e760"/>
-            <use xlink:href="#gentle-wave" x="50" y="3" fill="#e7e7e78f"/>
-            <use xlink:href="#gentle-wave" x="50" y="6" fill="#e7e7e7cc"/>  
-        </g>
-    </svg>
+    <div class="onditas">
+        <svg class="editorial"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 24 150 28"
+                preserveAspectRatio="none">
+            <defs>
+                <path id="gentle-wave"
+                d="M-160 44c30 0 
+                    58-18 88-18s
+                    58 18 88 18 
+                    58-18 88-18 
+                    58 18 88 18
+                    v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="50" y="0" fill="#e7e7e760"/>
+                <use xlink:href="#gentle-wave" x="50" y="3" fill="#e7e7e78f"/>
+                <use xlink:href="#gentle-wave" x="50" y="6" fill="#e7e7e7cc"/>  
+            </g>
+        </svg>
+    </div>
     <section class="mision">
         <div class="mision-content">
             <!-- Mostrar botón de edición solo si el usuario tiene permiso para ver noticias -->
