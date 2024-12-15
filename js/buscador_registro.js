@@ -158,8 +158,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Inicializar búsqueda al cargar la página
-    buscarDatos();
+    buscarDatos();   
+    
+    
+    document.getElementById("downloadPDF").addEventListener("click", function () {
+        const searchValue = searchInput.value.trim();
+        const cudValue = cudFilter.value;
+        const visitadoValue = visitadoFilter.value;
+    
+        const url = `php/generar_pdf_registro.php?search=${encodeURIComponent(searchValue)}&cud_filter=${encodeURIComponent(cudValue)}&visitado_filter=${encodeURIComponent(visitadoValue)}`;
+        window.location.href = url;
+    });
+    
 
-    
-    
 });

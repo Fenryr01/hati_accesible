@@ -53,6 +53,11 @@ include("navbar.php");
                 <option value="1">Visitado</option>
                 <option value="0">No Visitado</option>
             </select>
+            <div>
+                <button class="noselect2" id="downloadPDF">
+                    <span class="text">Descarga PDF</span><span class="material-icons">download</span>
+                </button>
+            </div>
         </section>
         <p id="resultado_texto">Resultados encontrados: 0</p>
         <section class="tabla_registro">
@@ -85,6 +90,7 @@ include("navbar.php");
             </button>
         </div>
     </main>
+
 
     <?php include("footer.html"); ?>
     <script src="js/buscador_registro.js"></script>

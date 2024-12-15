@@ -1716,6 +1716,61 @@ button.noselect:focus {
     outline: none;
 }
 
+button.noselect2 {
+    width: 220px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: rgb(0, 148, 153);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    padding: 0px;
+    justify-content: space-between; 
+    margin-bottom: 15px;
+}
+
+button.noselect2, button.noselect2 span {
+    transition: 200ms;
+}
+
+button.noselect2 .text {
+    transform: translateX(25px);
+    color: white;
+    font-weight: bold;
+}
+
+button.noselect2 .material-icons {
+    border-left: 1px solid rgb(0, 99, 102);
+    transform: translateX(180px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    position: absolute;
+}
+
+
+button.noselect2:hover {
+    background: rgb(0, 191, 197);
+}
+
+button.noselect2:hover .text {
+    color: transparent;
+}
+
+button.noselect2:hover .material-icons {
+    width: 220px;
+    border-left: none;
+    transform: translateX(0);
+}
+
+button.noselect2:focus {
+    outline: none;
+}
 
 
 /*===============  ACCORDEON O EXPANSION TILE =============== */
