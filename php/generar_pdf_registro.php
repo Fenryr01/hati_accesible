@@ -42,9 +42,6 @@ $pdf = new PDF();
 $pdf->AddPage();
 $pdf->AliasNbPages(); // Alias para el número total de páginas
 
-// Establecer alias para el número total de páginas
-$pdf->AliasNbPages();
-
 // --- Portada ---
 
 // Espacio inicial para asegurar que todo cabe en la página
@@ -106,7 +103,7 @@ $pdf->Ln(5); // Espacio después del título
 while ($row = mysqli_fetch_assoc($resultado)) {
     // Nombre completo como título en mayúsculas
     $pdf->SetFont('Arial', 'B', 16); // Título en negrita y más grande
-    $nombre_completo = strtoupper($row['apellido']) . " " . strtoupper($row['nombre']);
+    $nombre_completo = strtoupper($row['apellido'] ?? '') . " " . strtoupper($row['nombre'] ?? '');
     $pdf->Cell(0, 10, iconv('UTF-8', 'windows-1252', $nombre_completo), 0, 1, 'L');
     $pdf->Ln(3); // Espacio después del nombre
 
@@ -114,44 +111,44 @@ while ($row = mysqli_fetch_assoc($resultado)) {
     $pdf->SetFont('Arial', 'B', 12); // Negrita para los títulos
     $pdf->Cell(40, 10, 'DNI:', 0, 0);
     $pdf->SetFont('Arial', '', 12); // Normal para los datos
-    $pdf->Cell(0, 10, iconv('UTF-8', 'windows-1252', $row['dni']), 0, 1);
+    $pdf->Cell(0, 10, iconv('UTF-8', 'windows-1252', $row['dni'] ?? ''), 0, 1);
 
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(40, 10, 'Direccion:', 0, 0);
     $pdf->SetFont('Arial', '', 12);
-    $pdf->MultiCell(0, 10, iconv('UTF-8', 'windows-1252', $row['direccion']), 0, 1); // MultiCell para texto largo
+    $pdf->MultiCell(0, 10, iconv('UTF-8', 'windows-1252', $row['direccion'] ?? ''), 0, 1); // MultiCell para texto largo
 
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(40, 10, 'Telefono:', 0, 0);
     $pdf->SetFont('Arial', '', 12);
-    $pdf->Cell(0, 10, iconv('UTF-8', 'windows-1252', $row['telefono']), 0, 1);
+    $pdf->Cell(0, 10, iconv('UTF-8', 'windows-1252', $row['telefono'] ?? ''), 0, 1);
 
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(40, 10, 'Correo:', 0, 0);
     $pdf->SetFont('Arial', '', 12);
-    $pdf->Cell(0, 10, iconv('UTF-8', 'windows-1252', $row['correo_electronico']), 0, 1);
+    $pdf->Cell(0, 10, iconv('UTF-8', 'windows-1252', $row['correo_electronico'] ?? ''), 0, 1);
 
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(40, 10, 'Certificado CUD:', 0, 0);
     $pdf->SetFont('Arial', '', 12);
-    $certificado = $row['certificado_discapacidad'] ? 'Sí' : 'No';
+    $certificado = isset($row['certificado_discapacidad']) ? ($row['certificado_discapacidad'] ? 'Sí' : 'No') : '';
     $pdf->Cell(0, 10, iconv('UTF-8', 'windows-1252', $certificado), 0, 1);
 
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(40, 10, 'Quienes:', 0, 0);
     $pdf->SetFont('Arial', '', 12);
-    $pdf->MultiCell(0, 10, iconv('UTF-8', 'windows-1252', $row['quienes']), 0, 1);
+    $pdf->MultiCell(0, 10, iconv('UTF-8', 'windows-1252', $row['quienes'] ?? ''), 0, 1);
 
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(40, 10, 'Visitado:', 0, 0);
     $pdf->SetFont('Arial', '', 12);
-    $visitado = $row['visitado'] ? 'Sí' : 'No';
+    $visitado = isset($row['visitado']) ? ($row['visitado'] ? 'Sí' : 'No') : '';
     $pdf->Cell(0, 10, iconv('UTF-8', 'windows-1252', $visitado), 0, 1);
 
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(40, 10, 'Fecha Registro:', 0, 0);
     $pdf->SetFont('Arial', '', 12);
-    $pdf->Cell(0, 10, iconv('UTF-8', 'windows-1252', $row['fecha_registro']), 0, 1);
+    $pdf->Cell(0, 10, iconv('UTF-8', 'windows-1252', $row['fecha_registro'] ?? ''), 0, 1);
 
     $pdf->Ln(20); // Espacio entre registros
 }
