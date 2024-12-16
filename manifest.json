@@ -3,10 +3,10 @@
   "short_name": "DA",
   "description": "Una aplicacion para accesibilidad",
   "start_url": "/",
-  "display": "minimal-ui",
+  "display": "fullscreen",
   "background_color": "#F5F5F8",
   "theme_color": "#F5F5F8",
-  "orientation": "portrait",
+  "orientation": "any",
   "icons": [
       {
           "src": "img/logo_accesibilidad_ok.png",

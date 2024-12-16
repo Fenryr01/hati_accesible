@@ -19,8 +19,10 @@ if ($requiredPermission && (!isset($_SESSION['permisos'][$requiredPermission]) |
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="img/logo_accesibilidad_ok.png">
     <link rel="manifest" href="/manifest.json">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <header>
@@ -94,3 +96,18 @@ if ($requiredPermission && (!isset($_SESSION['permisos'][$requiredPermission]) |
         </div>
     </nav>
 </header>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker
+        .register('/service-worker.js')
+        .then((registration) => {
+          console.log('Service Worker registrado con éxito:', registration);
+        })
+        .catch((error) => {
+          console.error('Error al registrar el Service Worker:', error);
+        });
+    });
+  }
+</script>
