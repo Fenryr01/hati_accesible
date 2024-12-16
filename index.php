@@ -92,7 +92,7 @@
             <?php endwhile; ?>
         </div>
     </main>
-    <script>
+
 
 
     <?php include("footer.html"); ?>
