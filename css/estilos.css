@@ -2753,12 +2753,12 @@ button.noselect2:focus {
 
 /* =============== CUENTAS  =============== */
 @media (max-width: 880px) {
-    table {
+    .container_cuentas table {
         width: 100%;
         border-collapse: collapse;
     }
 
-    td, th {
+    .container_cuentas td, th {
         text-align: center;
         padding: 10px;
     }
@@ -2769,7 +2769,7 @@ button.noselect2:focus {
         display: block;
     }
 
-    td {
+    .container_cuentas td {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -2932,6 +2932,7 @@ button.noselect2:focus {
 
 
 @media (max-width: 870px) {
+    
 
     .form_registro{ 
         margin-top: 50px;
