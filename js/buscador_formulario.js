@@ -80,6 +80,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 prevPageBtn.disabled = (page === 1);
                 nextPageBtn.disabled = (page === totalPages || totalPages === 0);
+            } else {
+                console.error('La respuesta no es JSON:', xhr.responseText);
             }
         };
         xhr.send();

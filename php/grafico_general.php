@@ -62,7 +62,8 @@ if ($result_personas && $result_discapacidad && $result_zonas && $result_edades)
     $graficos[] = [
         "titulo" => "Cantidad de Personas por Zona",
         "data" => $cantidad_personas_por_zona,
-        "categories" => $zonas
+        "categories" => $zonas,
+        "tipo" => "torta"
     ];
 
     // Crear gráfico 3: Edades de las personas (intervalos de 10 años)
