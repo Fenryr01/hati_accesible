@@ -92,6 +92,20 @@
             <?php endwhile; ?>
         </div>
     </main>
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+        navigator.serviceWorker
+            .register('/service-worker.js')
+            .then((registration) => {
+            console.log('Service Worker registrado con éxito:', registration);
+            })
+            .catch((error) => {
+            console.error('Error al registrar el Service Worker:', error);
+            });
+        });
+    }
+    </script>
 
     <?php include("footer.html"); ?>
     <script src="js/banner.js"></script>
