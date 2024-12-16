@@ -1,42 +1,37 @@
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open('v1').then((cache) => {
-      return cache.addAll([
-        '/index.php',
-        '/about.php',
-        'cuentas.php',
-        '/footer.html',
-        '/formulario_discapacidad.php',
-        '/graficos.php',
-        '/navbar.php',
-        '/registro.php',
-        '/tabla_formulario.php',
-        '/tabla_registro.php',
-        'img/logo_accesibilidad_ok.png',
-        'img/favicon.png',
-        'css/estilos.css',
-        'js/navbar.js',
-        'js/about.js',
-        'js/banner.js',
-        'js/confirmacion.js',
-        'js/envio_registo.js',
-        'js/familia.js',
-        'js/footer.js',
-        'js/formulario.js',
-        'js/registro.js',
-        'php/con_home.php',
-        'php/con_about.php',
-        'php/db.php',
-        'php/insertar_discapacidad.php',
-        'php/login.php',
-        'php/obtener_detalles.php',
-        'php/registro_discapacidad.php',
-        'php/salir.php',
-        'php/get_valor.php',
-      ]);
-    })
-  );
-});
+const CACHE_NAME = 'v1'; // Nombre de la caché
+const URLS_TO_CACHE = [
+  '/index.php',
+  '/about.php',
+  '/cuentas.php',
+  '/footer.html',
+  '/formulario_discapacidad.php',
+  '/graficos.php',
+  '/navbar.php',
+  '/registro.php',
+  '/tabla_formulario.php',
+  '/tabla_registro.php',
+  'img/logo_accesibilidad_ok.png',
+  'img/favicon.png',
+  'css/estilos.css',
+  'js/navbar.js',
+  'js/about.js',
+  'js/banner.js',
+  'js/confirmacion.js',
+  'js/envio_registo.js',
+  'js/familia.js',
+  'js/footer.js',
+  'js/formulario.js',
+  'js/registro.js',
+  'php/con_home.php',
+  'php/con_about.php',
+  'php/db.php',
+  'php/insertar_discapacidad.php',
+  'php/login.php',
+  'php/obtener_detalles.php',
+  'php/registro_discapacidad.php',
+  'php/salir.php',
+  'php/get_valor.php',
+];
 
 // Evento de instalación
 self.addEventListener('install', (event) => {
@@ -68,7 +63,12 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
+      if (response) {
+        console.log('Retornando desde caché:', event.request.url);
+        return response;
+      }
+      console.log('Realizando solicitud de red:', event.request.url);
+      return fetch(event.request);
     })
   );
 });
