@@ -97,6 +97,7 @@ self.addEventListener('fetch', (event) => {
         .then((networkResponse) => {
           if (networkResponse && networkResponse.ok) {
             caches.open(CACHE_NAME).then((cache) => {
+              // Solo clonamos la respuesta si no hemos usado el cuerpo
               cache.put(event.request, networkResponse.clone()); // Cachea la respuesta
             });
           }
