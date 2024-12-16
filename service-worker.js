@@ -1,4 +1,4 @@
-const CACHE_NAME = 'v1.1'; // Cambia este número para actualizar la caché
+const CACHE_NAME = 'v1.2'; // Cambia este número cada vez que quieras actualizar la caché
 const URLS_TO_CACHE = [
   '/index.php',
   '/about.php',
@@ -35,6 +35,7 @@ const URLS_TO_CACHE = [
 
 // Evento de instalación: almacenar archivos en caché
 self.addEventListener('install', (event) => {
+  console.log('Service Worker: Instalando...');
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       console.log('Archivos en caché correctamente.');
@@ -45,6 +46,7 @@ self.addEventListener('install', (event) => {
 
 // Evento de activación: eliminar cachés antiguas
 self.addEventListener('activate', (event) => {
+  console.log('Service Worker: Activado.');
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
@@ -64,17 +66,24 @@ self.addEventListener('activate', (event) => {
 // Interceptar solicitudes
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      if (response) {
-        console.log('Retornando desde caché:', event.request.url);
-        return response; // Retornar desde caché
-      }
-      console.log('Realizando solicitud de red:', event.request.url);
-      return fetch(event.request) // Intentar obtener desde la red
-        .catch(() => {
-          // Puedes añadir una página de error personalizada si quieres
-          return caches.match('/index.php');
+    fetch(event.request)
+      .then((networkResponse) => {
+        // Si la respuesta es válida, actualiza la caché
+        if (networkResponse && networkResponse.ok) {
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, networkResponse.clone());
+          });
+          console.log('Actualizado desde la red y almacenado en caché:', event.request.url);
+        }
+        return networkResponse;
+      })
+      .catch(() => {
+        // Si falla la red, intenta obtenerlo desde la caché
+        console.log('Fallo en la red, retornando desde caché:', event.request.url);
+        return caches.match(event.request).then((cacheResponse) => {
+          // Si no está en caché, puedes redirigir a una página de error personalizada
+          return cacheResponse || caches.match('/index.php');
         });
-    })
+      })
   );
 });
