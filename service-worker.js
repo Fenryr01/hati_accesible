@@ -1,4 +1,4 @@
-const CACHE_NAME = 'v1'; // Nombre de la caché
+const CACHE_NAME = 'v1.1'; // Cambia este número para actualizar la caché
 const URLS_TO_CACHE = [
   '/index.php',
   '/about.php',
@@ -33,7 +33,7 @@ const URLS_TO_CACHE = [
   'php/get_valor.php',
 ];
 
-// Evento de instalación
+// Evento de instalación: almacenar archivos en caché
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -43,7 +43,7 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Evento de activación: eliminar cachés viejas
+// Evento de activación: eliminar cachés antiguas
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -57,6 +57,8 @@ self.addEventListener('activate', (event) => {
       );
     })
   );
+  // Activa inmediatamente el nuevo Service Worker
+  return self.clients.claim();
 });
 
 // Interceptar solicitudes
@@ -65,10 +67,14 @@ self.addEventListener('fetch', (event) => {
     caches.match(event.request).then((response) => {
       if (response) {
         console.log('Retornando desde caché:', event.request.url);
-        return response;
+        return response; // Retornar desde caché
       }
       console.log('Realizando solicitud de red:', event.request.url);
-      return fetch(event.request);
+      return fetch(event.request) // Intentar obtener desde la red
+        .catch(() => {
+          // Puedes añadir una página de error personalizada si quieres
+          return caches.match('/index.php');
+        });
     })
   );
 });
